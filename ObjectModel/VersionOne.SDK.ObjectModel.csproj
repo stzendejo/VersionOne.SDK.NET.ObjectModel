@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AC65747A-1F18-4B3B-9A99-91AC9B07B09C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VersionOne.SDK.ObjectModel</RootNamespace>
+    <AssemblyName>VersionOne.SDK.ObjectModel</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>VersionOne.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>http://localhost/VersionOne.SDK.ObjectModel/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>bin\Debug\VersionOne.SDK.ObjectModel.XML</DocumentationFile>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>bin\Release\VersionOne.SDK.ObjectModel.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="VersionOne.SDK.APIClient, Version=12.2.0.0, Culture=neutral, PublicKeyToken=e0f410c10d2e7630, processorArchitecture=MSIL">
+      <HintPath>..\packages\VersionOne.SDK.APIClient.12.2.0.0\lib\net40\VersionOne.SDK.APIClient.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Effort.cs" />
+    <Compile Include="AssetID.cs" />
+    <Compile Include="AssetTypeAttribute.cs" />
+    <Compile Include="Attachment.cs" />
+    <Compile Include="BaseAsset.cs" />
+    <Compile Include="BuildProject.cs" />
+    <Compile Include="BuildRun.cs" />
+    <Compile Include="ChangeSet.cs" />
+    <Compile Include="Conversation.cs" />
+    <Compile Include="CustomAttributeDictionary.cs" />
+    <Compile Include="Defect.cs" />
+    <Compile Include="DefectTemplate.cs" />
+    <Compile Include="Entity.cs" />
+    <Compile Include="EntityValidationException.cs" />
+    <Compile Include="EntityValidator.cs" />
+    <Compile Include="Environment.cs" />
+    <Compile Include="Epic.cs" />
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="Filters\AttachmentFilter.cs" />
+    <Compile Include="Filters\BaseAssetFilter.cs" />
+    <Compile Include="Filters\BuildProjectFilter.cs" />
+    <Compile Include="Filters\BuildRunFilter.cs" />
+    <Compile Include="Filters\ChangeSetFilter.cs" />
+    <Compile Include="Filters\ComparisonSearcher.cs" />
+    <Compile Include="Filters\ConversationFilter.cs" />
+    <Compile Include="Filters\DateSearcher.cs" />
+    <Compile Include="Filters\EffortFilter.cs" />
+    <Compile Include="Filters\EntityFilter.cs" />
+    <Compile Include="Filters\EnvironmentFilter.cs" />
+    <Compile Include="Filters\EpicFilter.cs" />
+    <Compile Include="Filters\FilterBuilder.cs" />
+    <Compile Include="Filters\GoalFilter.cs" />
+    <Compile Include="Filters\IComparisonSearcher.cs" />
+    <Compile Include="Filters\IssueFilter.cs" />
+    <Compile Include="Filters\LinkFilter.cs" />
+    <Compile Include="Filters\MemberFilter.cs" />
+    <Compile Include="Filters\DefectFilter.cs" />
+    <Compile Include="Filters\IterationFilter.cs" />
+    <Compile Include="Filters\MessageFilter.cs" />
+    <Compile Include="Filters\MessageReceiptFilter.cs" />
+    <Compile Include="Filters\NoteFilter.cs" />
+    <Compile Include="Filters\NullableDoubleSearcher.cs" />
+    <Compile Include="Filters\PrimaryWorkitemFilter.cs" />
+    <Compile Include="Filters\ProjectAssetFilter.cs" />
+    <Compile Include="Filters\ProjectFilter.cs" />
+    <Compile Include="Filters\RegressionPlanFilter.cs" />
+    <Compile Include="Filters\RegressionSuiteFilter.cs" />
+    <Compile Include="Filters\RegressionTestFilter.cs" />
+    <Compile Include="Filters\RequestFilter.cs" />
+    <Compile Include="Filters\RetrospectiveFilter.cs" />
+    <Compile Include="Filters\ScheduleFilter.cs" />
+    <Compile Include="Filters\SecondaryWorkitemFilter.cs" />
+    <Compile Include="Filters\State.cs" />
+    <Compile Include="Filters\StoryFilter.cs" />
+    <Compile Include="Filters\TaskFilter.cs" />
+    <Compile Include="Filters\TeamFilter.cs" />
+    <Compile Include="Filters\TestFilter.cs" />
+    <Compile Include="Filters\TestSetFilter.cs" />
+    <Compile Include="Filters\ThemeFilter.cs" />
+    <Compile Include="Filters\TrackedEpicFilter.cs" />
+    <Compile Include="Filters\WorkitemFilter.cs" />
+    <Compile Include="Goal.cs" />
+    <Compile Include="IListValueProperty.cs" />
+    <Compile Include="Issue.cs" />
+    <Compile Include="Iteration.cs" />
+    <Compile Include="Link.cs" />
+    <Compile Include="ListValue\AttachmentType.cs" />
+    <Compile Include="ListValue\BuildSource.cs" />
+    <Compile Include="ListValue\BuildStatus.cs" />
+    <Compile Include="ListValue\EpicPriority.cs" />
+    <Compile Include="ListValue\EpicStatus.cs" />
+    <Compile Include="ListValue\EpicType.cs" />
+    <Compile Include="ListValue\ProjectStatus.cs" />
+    <Compile Include="ListValue\GoalPriority.cs" />
+    <Compile Include="ListValue\GoalType.cs" />
+    <Compile Include="ListValue\IssuePriority.cs" />
+    <Compile Include="ListValue\IssueType.cs" />
+    <Compile Include="ListValue\RegressionTestStatus.cs" />
+    <Compile Include="ListValue\RequestPriority.cs" />
+    <Compile Include="ListValue\RequestStatus.cs" />
+    <Compile Include="ListValue\RequestType.cs" />
+    <Compile Include="ListValue\TaskSource.cs" />
+    <Compile Include="ListValue\TaskStatus.cs" />
+    <Compile Include="ListValue\TaskType.cs" />
+    <Compile Include="ListValue\TestStatus.cs" />
+    <Compile Include="ListValue\TestType.cs" />
+    <Compile Include="ListValue\ThemeStatus.cs" />
+    <Compile Include="ListValue\ThemeType.cs" />
+    <Compile Include="ListValue\ThemeSource.cs" />
+    <Compile Include="ListValue\DefectType.cs" />
+    <Compile Include="ListValue\NoteType.cs" />
+    <Compile Include="ListValue\StoryType.cs" />
+    <Compile Include="ListValue\WorkitemRisk.cs" />
+    <Compile Include="ListValue\WorkitemSource.cs" />
+    <Compile Include="ListValue\CustomListValue.cs" />
+    <Compile Include="ListValue\ListValue.cs" />
+    <Compile Include="ListValue\ResolutionReason.cs" />
+    <Compile Include="ListValue\WorkitemPriority.cs" />
+    <Compile Include="ListValue\WorkitemStatus.cs" />
+    <Compile Include="Member.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="MessageReceipt.cs" />
+    <Compile Include="Note.cs" />
+    <Compile Include="PrimaryWorkitem.cs" />
+    <Compile Include="Project.cs" />
+    <Compile Include="ProjectAsset.cs" />
+    <Compile Include="ProxySettings.cs" />
+    <Compile Include="Rank.cs" />
+    <Compile Include="RegressionPlan.cs" />
+    <Compile Include="RegressionSuite.cs">
+    </Compile>
+    <Compile Include="RegressionTest.cs" />
+    <Compile Include="Request.cs" />
+    <Compile Include="Retrospective.cs" />
+    <Compile Include="Role.cs" />
+    <Compile Include="Schedule.cs" />
+    <Compile Include="SecondaryWorkitem.cs" />
+    <Compile Include="State.cs" />
+    <Compile Include="Story.cs" />
+    <Compile Include="StoryTemplate.cs" />
+    <Compile Include="StubAssetID.cs" />
+    <Compile Include="EntityCollection.cs" />
+    <Compile Include="System.IO.StreamCopier.cs" />
+    <Compile Include="Task.cs" />
+    <Compile Include="Team.cs" />
+    <Compile Include="Test.cs" />
+    <Compile Include="TestSet.cs" />
+    <Compile Include="TestSuite.cs" />
+    <Compile Include="Theme.cs" />
+    <Compile Include="Transform.cs" />
+    <Compile Include="V1Instance.cs" />
+    <Compile Include="V1InstanceApiClientInternals.cs" />
+    <Compile Include="V1InstanceConfiguration.cs" />
+    <Compile Include="V1InstanceCreate.cs" />
+    <Compile Include="V1InstanceGet.cs" />
+    <Compile Include="Workitem.cs" />
+    <Compile Include="WrapperManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="VersionOne.SDK.ObjectModel.nuspec" />
+    <None Include="VersionOne.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="$(SolutionDir)\..\GetBuildTools\bin\MSBuild\VersionOne\Versioning.targets" Condition="Exists('$(SolutionDir)\..\GetBuildTools\bin\MSBuild\VersionOne\Versioning.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

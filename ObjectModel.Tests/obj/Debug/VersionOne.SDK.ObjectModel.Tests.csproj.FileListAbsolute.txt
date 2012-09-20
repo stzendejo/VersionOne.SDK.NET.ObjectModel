@@ -1,0 +1,12 @@
+C:\Projects\v1.NETSdk.GitHub\VersionOne.SDK.NET.ObjectModel\ObjectModel.Tests\bin\Debug\logo.png
+C:\Projects\v1.NETSdk.GitHub\VersionOne.SDK.NET.ObjectModel\ObjectModel.Tests\bin\Debug\VersionOne.SDK.ObjectModel.Tests.dll
+C:\Projects\v1.NETSdk.GitHub\VersionOne.SDK.NET.ObjectModel\ObjectModel.Tests\bin\Debug\VersionOne.SDK.ObjectModel.Tests.pdb
+C:\Projects\v1.NETSdk.GitHub\VersionOne.SDK.NET.ObjectModel\ObjectModel.Tests\bin\Debug\nunit.framework.dll
+C:\Projects\v1.NETSdk.GitHub\VersionOne.SDK.NET.ObjectModel\ObjectModel.Tests\bin\Debug\VersionOne.SDK.APIClient.dll
+C:\Projects\v1.NETSdk.GitHub\VersionOne.SDK.NET.ObjectModel\ObjectModel.Tests\bin\Debug\VersionOne.SDK.ObjectModel.dll
+C:\Projects\v1.NETSdk.GitHub\VersionOne.SDK.NET.ObjectModel\ObjectModel.Tests\bin\Debug\VersionOne.SDK.ObjectModel.pdb
+C:\Projects\v1.NETSdk.GitHub\VersionOne.SDK.NET.ObjectModel\ObjectModel.Tests\bin\Debug\VersionOne.SDK.ObjectModel.xml
+C:\Projects\v1.NETSdk.GitHub\VersionOne.SDK.NET.ObjectModel\ObjectModel.Tests\bin\Debug\nunit.framework.xml
+C:\Projects\v1.NETSdk.GitHub\VersionOne.SDK.NET.ObjectModel\ObjectModel.Tests\obj\Debug\VersionOne.SDK.ObjectModel.Tests.csprojResolveAssemblyReference.cache
+C:\Projects\v1.NETSdk.GitHub\VersionOne.SDK.NET.ObjectModel\ObjectModel.Tests\obj\Debug\VersionOne.SDK.ObjectModel.Tests.dll
+C:\Projects\v1.NETSdk.GitHub\VersionOne.SDK.NET.ObjectModel\ObjectModel.Tests\obj\Debug\VersionOne.SDK.ObjectModel.Tests.pdb

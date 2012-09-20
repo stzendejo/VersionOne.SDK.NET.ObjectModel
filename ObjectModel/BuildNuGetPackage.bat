@@ -1,0 +1,1 @@
+..\.nuget\NuGet.exe pack VersionOne.SDK.ObjectModel.csproj -prop Configuration=Release
