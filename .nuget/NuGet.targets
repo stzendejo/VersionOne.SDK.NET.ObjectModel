@@ -33,6 +33,11 @@
             BuildPackage;
         </BuildDependsOn>
     </PropertyGroup>
+
+	<ItemGroup Condition=" '$(PackageSources)' == '' ">
+    <!-- Package sources used to restore packages. By default will used the registered sources under %APPDATA%\NuGet\NuGet.Config -->
+    <PackageSource Include="http://nuget/nuget/nuget" />      
+</ItemGroup>
     
     <Target Name="CheckPrerequisites">
         <!-- Raise an error if we're unable to locate nuget.exe  -->
@@ -49,9 +54,4 @@
         <Exec Command="$(BuildCommand)"
               LogStandardErrorAsError="true" />
     </Target>
-
-	<ItemGroup Condition=" '$(PackageSources)' == '' ">
-    <!-- Package sources used to restore packages. By default will used the registered sources under %APPDATA%\NuGet\NuGet.Config -->
-    <PackageSource Include="http://nuget/nuget/nuget" />      
-</ItemGroup>
 </Project>
