@@ -17,9 +17,10 @@
     <!--
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
 -->
-	<dependencies>
-        <dependency id="VersionOne.SDK.APIClient" version="12.2.0" />
+    <dependencies>
+       	<dependency id="VersionOne.SDK.APIClient" version="[12.2,12.3)" />
     </dependencies>
+
     <copyright>Copyright 2012</copyright>
     <tags>V1 VersionOne API ObjectModel agile</tags>
   </metadata>
