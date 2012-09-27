@@ -1,0 +1,1 @@
+msbuild VersionOne.SDK.ObjectModel.Tests.csproj /p:RequireRestoreConsent=false /p:Configuration=Release /p:Platform=AnyCPU /t:RestorePackages
