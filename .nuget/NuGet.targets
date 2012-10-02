@@ -16,10 +16,10 @@
         <DownloadNuGetExe Condition=" '$(DownloadNuGetExe)' == '' ">false</DownloadNuGetExe>
     </PropertyGroup>
     
-    <ItemGroup Condition=" '$(PackageSources)' == '' ">
+    <!-- <ItemGroup Condition=" '$(PackageSources)' == '' "> -->
         <!-- Package sources used to restore packages. By default will used the registered sources under %APPDATA%\NuGet\NuGet.Config -->
-            <PackageSource Include="http://packages.nuget.org/api/v2/;http://nuget/nuget/nuget" />
-    </ItemGroup>
+        <!--    <PackageSource Include="http://packages.nuget.org/api/v2/;http://nuget/nuget/nuget" /> -->
+    <!-- </ItemGroup> -->
 
     <PropertyGroup Condition=" '$(OS)' == 'Windows_NT'">
         <!-- Windows specific commands -->

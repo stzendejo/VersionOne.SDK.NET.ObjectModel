@@ -1,1 +1,6 @@
-msbuild ObjectModel.Tests\VersionOne.SDK.ObjectModel.Tests.csproj /p:RequireRestoreConsent=false /p:Configuration=Release /p:Platform=AnyCPU /p:Major=12 /p:Minor=2  /p:Revision=0 /p:AssemblyInformationalVersion="12.2.1.3588 Summer 2012" /p:AssemblyCopyright="Copyright 2012, VersionOne, Inc. Licensed under modified BSD." /p:CompanyName="VersionOne, Inc" /p:AssemblyProduct="VersionOne.SDK.ObjectModel.Tests" /p:AssemblyTitle="VersionOne SDK Object Model Tests" /p:AssemblyDescription="VersionOne SDK .NET API Object Model Tests Release Build"
+mkdir packages
+cd ObjectModel.Tests
+call ..\..\GetBuildTools\bin\NuGet\RestorePackagesOnly.bat VersionOne.SDK.ObjectModel.Tests.csproj
+call ..\..\GetBuildTools\bin\NuGet\UpdatePackages.bat
+cd ..\
+buildObjectModel.Tests.MSBuild.bat
