@@ -1,1 +1,1 @@
-msbuild VersionOne.SDK.ObjectModel.Tests.csproj /p:RequireRestoreConsent=false /p:Configuration=Release /p:Platform=AnyCPU /t:RestorePackages
+..\..\GetBuildTools\bin\NuGet\RestorePackagesOnly.bat VersionOne.SDK.ObjectModel.Tests.csproj
