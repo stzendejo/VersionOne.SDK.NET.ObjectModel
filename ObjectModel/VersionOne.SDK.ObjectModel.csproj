@@ -74,8 +74,8 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="VersionOne.SDK.APIClient, Version=12.2.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\VersionOne.SDK.APIClient.12.2.9.0\lib\net40\VersionOne.SDK.APIClient.dll</HintPath>
+    <Reference Include="VersionOne.SDK.APIClient, Version=12.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\VersionOne.SDK.APIClient.12.2.0.0\lib\net40\VersionOne.SDK.APIClient.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
