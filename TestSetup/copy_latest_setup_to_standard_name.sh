@@ -5,7 +5,7 @@ set -e
 
 # copy the latest version of setup to a standard name for other scripts 
 
-cd $WORKSPACE/ObjectModel.Tests/TestSetup
+cd $WORKSPACE/TestSetup
 pwd
 
 rm -f VersionOne.Setup-Ultimate-latest.exe
