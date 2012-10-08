@@ -1,0 +1,1 @@
+RESTORE DATABASE <Name of DB> FROM DISK = '<Path to TestData Folder>\V1SDKTests.bak' WITH RECOVERY, MOVE N'demo.data.r63' TO N'<Path to SQL Data Dir>\V1SDKTests_Data0.mdf', MOVE N'demo.data.r63_log' TO N'<Path to SQL Data Dir>\V1SDKTests_Log1.ldf'
