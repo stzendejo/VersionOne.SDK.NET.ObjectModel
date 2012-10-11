@@ -77,7 +77,7 @@ _Install Git for Windows from http://msysgit.github.com/ if you do not already h
 1. If you have not already done so, then build the `ObjectModel.Tests` project
 2. Start Git Bash and type: `cd /<path>/<to>/VersionOne.SDK.NET.ObjectModel`
 3. Copy the VersionOne installer exe to the `TestSetup` folder. Example: `VersionOne.Setup-Ultimate-12.2.2.3601.exe`
-4. If you don't use Ultimate, then you'll need to modify the TestSetup/copy_latest_setup_to_standard_name.sh script and change the `SETUP =` line to reflect the version.
+4. If you don't use Ultimate, then you'll need to modify the `TestSetup/copy_latest_setup_to_standard_name.sh` script and change the `SETUP =` line to reflect the version.
 5. From the root of the `VersionOne.SDK.NET.ObjectModel` folder type: `". ./run_integration_tests.sh"`
 
 This will install VersionOne to `http://localhost/V1SDKTests_<date and timestamp>`. It will also run the integration tests using the NUnit console test runner, and store the results in `run_integration_tests.xml` when finished. There should be no failures if you are using Ultimate edition, though a number are currently ignored. If you are using Enterprise edition, you will see a number of failures due to licensing restrictions.
