@@ -70,7 +70,7 @@ If package updates are available, you'd see something like:
 2. Microsoft IIS 7 or higher
 3. Git for Windows (For its Git Bash command line shell)
 
-Install Git for Windows from http://msysgit.github.com/ if you do not alread have it.
+_Install Git for Windows from http://msysgit.github.com/ if you do not already have it._
 
 ### If SQL Server is installed at "(local)" on your workstation
 
