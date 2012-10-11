@@ -3,7 +3,7 @@ The ObjectModel library provide a strongly-typed model on top of the VersionOne 
 
 ## How to get the library as a precompiled package
 
-You can get a precompiled libirary assembly by using the NuGet package manager from Visual Studio or nuget.exe.
+You can get a precompiled libirary assembly by using the NuGet package manager from Visual Studio or nuget.exe. Search for `VersionOne.SDK.ObjectModel` to find the package.
 
 ## How to clone the source code repository from GitHub
 
@@ -24,27 +24,21 @@ _TODO: add more details about this..._
 
 First, you must enable NuGet package support in the solution. To do this:
 
-1. Open the VersionOne.SDK.NET.ObjectModel.sln solution in Visual Studio.
-2. Right click on the solution node and click "Enable NuGet Package Restore".
-3. From the program menu, click Tools > Library Package Manager > Package Manager Console
-4. From the Package Manager Console, you should see the message "Some NuGet packages are missing from this solution. 
-
-Click to restore." Click the "Restore" button next to it.
+1. Open the `VersionOne.SDK.NET.ObjectModel.sln` solution in Visual Studio.
+2. Right click on the solution node and click `Enable NuGet Package Restore`.
+3. From the program menu, click `Tools > Library Package Manager > Package Manager Console`
+4. From the Package Manager Console, you should see the message `Some NuGet packages are missing from this solution. Click to restore.` Click the `Restore` button next to it.
 
 Those steps should download all the needed packages from the NuGet gallery. You can now build the solution.
 
 ## How to upgrade NuGet packages to their latest versions
 
-NuGet can also update the installed packages to the most recent compatible versions. The Object Model project 
-
-depends on the VersionOne API Client library, which evolves at a much slower rate, so it's unlikely to need 
-
-upgrading.
+NuGet can also update the installed packages to the most recent compatible versions. The Object Model project depends on the VersionOne API Client library, which evolves at a much slower rate, so it's unlikely to need upgrading.
 
 To install updated packages:
 
-1. From the program menu, click Tools > Library Package Manager > Package Manager Console
-2. From the Package Manager Console, type: Update-Package
+1. From the program menu, click `Tools > Library Package Manager > Package Manager Console`
+2. From the Package Manager Console, type: `Update-Package`
 
 If no packages updates are available, you should see output like:
 
@@ -78,7 +72,7 @@ If package updates are available, you'd see something like:
 
 Install Git for Windows from http://msysgit.github.com/ if you do not alread have it.
 
-## If SQL Server is installed on your workstation under the default name of "(local)"
+## If SQL Server is installed at "(local)" on your workstation
 
 1. If you have not already done so, then build the `ObjectModel.Tests` project
 2. Start Git Bash and type: `cd /<path>/<to>/VersionOne.SDK.NET.ObjectModel`
@@ -88,12 +82,12 @@ Install Git for Windows from http://msysgit.github.com/ if you do not alread hav
 
 This will install VersionOne to `http://localhost/V1SDKTests_<date and timestamp>`. It will also run the integration tests using the NUnit console test runner, and store the results in `run_integration_tests.xml` when finished. There should be no failures if you are using Ultimate edition, though a number are currently ignored. If you are using Enterprise edition, you will see a number of failures due to licensing restrictions.
 
-## If SQL Server is not installed on your workstation or is not at the default instance "(local)"
+## If SQL Server is not installed at "(local)" on your workstation
 
 In this case:
 
-1. Open the file TestSetup/restore_db_and_install_v1.sh.
-2. Change the DB_SERVER to point to your instance, such as "(local)\SQL2008" or "dbserver\V1Instance"
+1. Open the file `TestSetup/restore_db_and_install_v1.sh`.
+2. Change the `DB_SERVER` variable to point to your instance, such as `(local)\SQL2008` or `dbserver\V1Instance`
 2. Save it, and see step 4 from above.
 
 ## Notes on running the tests from Visual Studio for debugging ##
