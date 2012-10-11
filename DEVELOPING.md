@@ -1,23 +1,3 @@
-# Developing with VersionOne SDK.NET #
-
-## Getting Libraries ##
-VersionOne SDK.NET consists of two DLLs:
-
-* VersionOne.SDK.APIClient
-* VersionOne.SDK.ObjectModel
-
-Both libraries are available via:
-
-* NuGet from within Visual Studio.
-* Download binares in a zip file.
-
-### APIClient ###
-The APIClient provides access to the Core API without concern for the 
-underlying RESTful API or the HTTP/XML plumbing. Through the APIClient, 
-developers can query for simple or complex sets of information, update the 
-information, and execute system-defined operations. The APIClient is best 
-suited for course-grained and bulk access.
-
 ### ObjectModel ###
 The ObjectModel libraries provide a strongly-typed model on top of APIClient. 
 This allows developers to easily and quickly develop VersionOne integrations 
@@ -26,89 +6,94 @@ Iteration, etc) instead of more abstract objects (Asset, Attribute). The
 ObjectModel is suitable for fine-grained access, such as creating new 
 VersionOne assets.
 
+# How to get the library as a precompiled package #
 
-## Building from Source ##
-The solution uses NuGet to resolve external dependencies. Since the test 
-projects depend on NUnit, NuGet will install the correct version of NUnit when 
-Visual Studio builds the test projects.
+You can get a precompiled libirary assembly by using the NuGet package manager from Visual Studio or nuget.exe.
 
-## Testing ##
-Different testing strategies have been employed for each layer of 
-VersionOne SDK.NET.
+# How to clone the source code repository from GitHub #
 
-### APIClient ###
-VersionOne.SDK.APIClient.Tests run without a VersionOne installation. In order 
-to ease execution of the unit tests, the project file has a reference to:
-`$(SolutionDir)\packages\NUnit.Runners.<version>\tools\nunit.exe`
+# How to download the source code as a zip file from GitHub #
 
-1. Build the VersionOne.SDK.APIClient.Tests project.
-2. Right-click on the VersionOne.SDK.APIClient.Tests project and select 
-   `Debug > Start new instance` or `Debug > Step Into new instance`.
+# How to build the library from source #
 
-By default Visual Studio's debugger will not stop on breakpoints when executing 
-the tests in the external NUnit tool. To enable breakpoints, modify the 
-`packages\NUnit.Runners.<verion>\tools\nunit.exe.config` file under 
-`Startup > supportedRuntime` as follows:
+First, you must enable NuGet package support in the solution. To do this:
 
-```xml
-  <startup useLegacyV2RuntimeActivationPolicy="true">
-    <!-- Comment out the next line to force use of .NET 4.0 -->
-    <!-- <supportedRuntime version="v2.0.50727" /> -->
-    <supportedRuntime version="v4.0.30319" />
-  </startup>
-```
+1. Open the VersionOne.SDK.NET.ObjectModel.sln solution in Visual Studio.
+2. Right click on the solution node and click "Enable NuGet Package Restore".
+3. From the program menu, click Tools > Library Package Manager > Package Manager Console
+4. From the Package Manager Console, you should see the message "Some NuGet packages are missing from this solution. Click to restore." Click the "Restore" button next to it.
 
-This forces the NUnit runner to execute under .NET 4.0, and allows Visual 
-Studio to thus load the debug symbols. Otherwise, NUnit executes under 2.0, but 
-spawns a separate process to execute the tests under version 4.0.
+Those steps should download all the needed packages from the NuGet gallery. You can now build the solution.
 
-### ObjectModel ###
-VersionOne.SDK.ObjectModel.Tests require a VersionOne instance. The 
-`InstallV1.cmd` script installs the VersionOne application with options 
-necessary for testing. It requires some modifications for local environments.
+# How to upgrade NuGet packages to their latest versions #
 
-#### Database Restore ####
-By default, the script will restore the database backup to the default SQL 
-Server intance on the local machine. To override the defaults:
+NuGet can also update the installed packages to the most recent compatible versions. The Object Model project depends on the VersionOne API Client library, which evolves at a much slower rate, so it's unlikely to need upgrading.
 
-* Change the `RESTORE_DB` variable to `false`.
-* Change the `DB_SERVER` to the DB server and instance. 
-  Example: `(local)\SQL2008` or `dbserver\MyInstance`
-* Copy the `V1SDKTests.exe` file to the target server if it is not the local 
-  machine. Run `V1SDKTests.exe` to extract the `V1SDKTests.bak` file. It should 
-  end up about 15 megabytes.
-* Edit the `RestoreV1SDKTestsDB.sql` file to configure the paths needed to 
-  restoree DB from disk on the target SQL Server instance. 
+To install updated packages:
 
-*Note:* The DB name `V1SDKTests` is hard-coded into other files; hence, the DB 
-name should not be changed.
+1. From the program menu, click Tools > Library Package Manager > Package Manager Console
+2. From the Package Manager Console, type: Update-Package
 
-#### Application Installer ####
+If no packages updates are available, you should see output like:
 
-* Copy the VersionOne installer exe file into the TestSetup directory.
-* Edit `InstallV1.cmd` and modify the `V1_SETUP` variable to point to the name 
-  of the installer. By default it is `VersionOne.Setup-Ultimate-latest.exe`.
-* Type `InstallV1.cmd` from the command line.
+Applying constraint 'VersionOne.SDK.APIClient (= 12.2 && < 12.3)' defined in packages.config.
+No updates available for 'VersionOne.SDK.APIClient' in project 'VersionOne.SDK.ObjectModel'.
+Applying constraint 'VersionOne.SDK.APIClient (= 12.2 && < 12.3)' defined in packages.config.
+No updates available for 'VersionOne.SDK.APIClient' in project 'VersionOne.SDK.ObjectModel.Tests'.
+No updates available for 'NUnit.Runners' in project 'VersionOne.SDK.ObjectModel.Tests'.
+No updates available for 'NUnit' in project 'VersionOne.SDK.ObjectModel.Tests'.
 
-*Note:* A SQL script attempts to determine the exact location for the DB files. 
-If it fails, replace the `CALL SET_SQL_VARS.bat` with 
-`SET SQL_DATA_DIR=<Path to SQL DataDir>`. Example: 
-`C:\Program Files\Microsoft SQL Server\MSSQL10_50.MSSQLSERVER\MSSQL\`
+If package updates are available, you'd see something like:
 
-After the `InstallV1.cmd` script completes, the success message should read:
+Updating 'VersionOne.SDK.APIClient' from version '12.2.0.0' to '12.2.44.0' in project 'VersionOne.SDK.ObjectModel.Tests'.
+Successfully removed 'VersionOne.SDK.APIClient 12.2.0.0' from VersionOne.SDK.ObjectModel.Tests.
+Successfully installed 'VersionOne.SDK.APIClient 12.2.44.0'.
+Successfully added 'VersionOne.SDK.APIClient 12.2.44.0' to VersionOne.SDK.ObjectModel.Tests.
+Updating 'VersionOne.SDK.APIClient' from version '12.2.0.0' to '12.2.44.0' in project 'VersionOne.SDK.ObjectModel'.
+Successfully removed 'VersionOne.SDK.APIClient 12.2.0.0' from VersionOne.SDK.ObjectModel.
+Successfully added 'VersionOne.SDK.APIClient 12.2.44.0' to VersionOne.SDK.ObjectModel.
+Successfully uninstalled 'VersionOne.SDK.APIClient 12.2.0.0'.
+No updates available for 'NUnit.Runners' in project 'VersionOne.SDK.ObjectModel.Tests'.
+No updates available for 'NUnit' in project 'VersionOne.SDK.ObjectModel.Tests'.
 
-```
-Thank you, you can browse to http://localhost/V1SDKTests and login with 
-admin / admin, and you should be able to execute the integration tests now...
-```
+# How to run the integration tests #
 
-*Note:* Run `UnInstallV1.cmd` to uninstall the VersionOne application and 
-database.
+## Dependencies ##
 
-#### Running the Tests ####
-In order to ease execution of the unit tests, the 
-VersionOne.SDK.ObjectModel.Tests project file has a reference to:
-`$(SolutionDir)\packages\NUnit.Runners.<version>\tools\nunit.exe`
+1. MS SQL Server 2008 or higher
+2. Microsoft IIS 7 or higher
+3. Git for Windows (For its Git Bash command line shell)
+
+Install Git for Windows from http://msysgit.github.com/ if you do not alread have it.
+
+## If SQL Server is installed on your workstation under the default name of "(local)" ##
+
+1. If you have not already done so, then build the ObjectModel.Tests project
+2. Start Git Bash and type: cd /<path>/<to>/VersionOne.SDK.NET.ObjectModel
+3. Place a copy of the VersionOne installer exe inside the TestSetup folder. Example: VersionOne.Setup-Ultimate-12.2.2.3601.exe
+4. If you don't use Ultimate, then you'll need to modify the TestSetup/copy_latest_setup_to_standard_name.sh script and change the "SETUP =" line to reflect the version.
+5. From the root of the VersionOne.SDK.NET.ObjectModel folder type: ". ./run_integration_tests.sh"
+
+This will install VersionOne to http://localhost/V1SDKTests_<date and timestamp>. It will also run the integration tests using the NUnit console test runner, and store the results in "run_integration_tests.xml" when finished.
+
+## If SQL Server is not installed on your workstation ##
+
+In this case:
+
+1. Open the file TestSetup/restore_db_and_install_v1.sh.
+2. Change the DB_SERVER to point to your instance, such as "(local)\SQL2008" or "dbserver\V1Instance"
+2. Save it, and see step 4 from above.
+
+## Notes on running the tests from Visual Studio for debugging ##
+
+Only do this if you are testing specific methods and do not wish to re-run the entire suite like you can do above.
+
+By default, the tests will look for an instance of VersionOne installed at localhost/V1SDKTests. So, you can get this installed by modifying the scripts above and commenting out the remove step from the bottom. Most of the tests will run, though there are a few that depend on the fresh database restore.
+
+In order to ease execution of the unit tests, the VersionOne.SDK.ObjectModel.Tests project file has a reference to:
+"$(SolutionDir)\packages\NUnit.Runners.<version>\tools\nunit.exe"
+
+Note: If the NUnit runner version changes, you'll need to modify that path slightly.
 
 1. Build the VersionOne.SDK.ObjectModel.Tests project.
 2. Right-click on the VersionOne.SDK.ObjectModel.Tests project and select 
