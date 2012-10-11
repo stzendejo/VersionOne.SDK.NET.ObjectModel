@@ -3,12 +3,12 @@ The ObjectModel library provide a strongly-typed model on top of the VersionOne 
 
 ## How to get the library as a precompiled package
 
-You can get a precompiled libirary assembly by using the NuGet package manager from Visual Studio or nuget.exe. Search for `VersionOne.SDK.ObjectModel` to find the package.
+Use the NuGet package manager from Visual Studio or nuget.exe. Search for `VersionOne.SDK.ObjectModel` to find the precompiled package. Packages installed via NuGet have been tested by VersionOne against the product release version specified in the description of the package.
 
 ## How to clone the source code repository from GitHub
 
-1. You'll need a Windows Git client. We suggest _Git for Windows_ from http://msysgit.github.com/, especially since you'll also need the Git Bash command line shell from it if you want to run integration tests.
-2. Open Git Bash and find a folder you want to clone the repository into.
+1. Install _Git for Windows_ from http://msysgit.github.com/
+2. Run Git Bash
 3. Type `git clone git@github.com:versionone/VersionOne.SDK.NET.ObjectModel.git`
 
 Note: you may have to set some authentication and SSH keys first. 
