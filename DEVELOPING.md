@@ -72,7 +72,7 @@ If package updates are available, you'd see something like:
 
 Install Git for Windows from http://msysgit.github.com/ if you do not alread have it.
 
-## If SQL Server is installed at "(local)" on your workstation
+### If SQL Server is installed at "(local)" on your workstation
 
 1. If you have not already done so, then build the `ObjectModel.Tests` project
 2. Start Git Bash and type: `cd /<path>/<to>/VersionOne.SDK.NET.ObjectModel`
@@ -82,7 +82,7 @@ Install Git for Windows from http://msysgit.github.com/ if you do not alread hav
 
 This will install VersionOne to `http://localhost/V1SDKTests_<date and timestamp>`. It will also run the integration tests using the NUnit console test runner, and store the results in `run_integration_tests.xml` when finished. There should be no failures if you are using Ultimate edition, though a number are currently ignored. If you are using Enterprise edition, you will see a number of failures due to licensing restrictions.
 
-## If SQL Server is not installed at "(local)" on your workstation
+### If SQL Server is not installed at "(local)" on your workstation
 
 In this case:
 
@@ -90,7 +90,7 @@ In this case:
 2. Change the `DB_SERVER` variable to point to your instance, such as `(local)\SQL2008` or `dbserver\V1Instance`
 2. Save it, and see step 4 from above.
 
-## Notes on running the tests from Visual Studio for debugging ##
+### Notes on running the integration tests from Visual Studio for debugging
 
 Only do this if you are testing specific methods and do not wish to re-run the entire suite like you can do above.
 
@@ -114,7 +114,7 @@ By default Visual Studio's debugger will not stop on breakpoints when executing 
 
 This forces the NUnit runner to execute under .NET 4.0, and allows Visual Studio to thus load the debug symbols. Otherwise, NUnit executes under 2.0, but spawns a separate process to execute the tests under version 4.0.
 
-## Getting Help ##
+## Getting Help
 Need to bootstrap on VersionOne SDK.NET quickly? VersionOne services brings a wealth of development experience to training and mentoring on VersionOne SDK.NET:
 
 http://www.versionone.com/training/product_training_services/
