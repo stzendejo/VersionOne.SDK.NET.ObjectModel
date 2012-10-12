@@ -1,4 +1,4 @@
-# VersioniOne SDK.NET ObjectModel Library
+# VersionOne SDK.NET ObjectModel Library
 The ObjectModel library provide a strongly-typed model on top of the VersionOne SDK.NET API Client library. This allows developers to easily and quickly develop VersionOne integrations and complementary applications/utilities using domain objects (Project, Story, Iteration, etc) instead of more abstract objects (Asset, Attribute). The ObjectModel is suitable for fine-grained access, such as creating new VersionOne assets.
 
 ## How to get the library as a precompiled package
