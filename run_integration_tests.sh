@@ -1,4 +1,4 @@
-# You need VersionOne.Setup-Ultimate*.exe in ____ directory
+# You need VersionOne.Setup-*.exe in ____ directory
 # you need VersionOne.SDK.Net*.dll in ____ directory (provided by nuget maybe)
 # You need TestSetup/* stuff (sql DB, scripts)
 
@@ -23,6 +23,14 @@ $WORKSPACE/TestSetup/copy_latest_setup_to_standard_name.sh
 # Prepare for test
 $WORKSPACE/TestSetup/restore_db_and_install_v1.sh
 
+export APP_POOL=V1-Core-$BUILD_TAG
+
+#echo "C:\Windows\system32\inetsrv\appcmd.exe set apppool "$APP_POOL" /enable32BitAppOnWin64:true" >enable32BitInAppPool.bat
+#cmd \\/c enable32BitInAppPool.bat
+#rm enable32BitInAppPool.bat
+
+cmd \\/c pause
+
 # Run tests
 
 # Note: Extra IIS stuff to run before NUnit if needed...
@@ -34,4 +42,8 @@ $NUNIT_CONSOLE_RUNNER //framework:net-4.0 //labels //stoponerror ${WORKSPACE}\\O
 
 # Clean up
 $WORKSPACE/TestSetup/remove_v1_and_delete_db.sh
+echo "C:\Windows\system32\inetsrv\appcmd.exe delete apppool "$APP_POOL"" >deleteAppPool.bat
+cmd \\/c deleteAppPool.bat
+rm deleteAppPool.bat
+
 cd $WORKSPACE

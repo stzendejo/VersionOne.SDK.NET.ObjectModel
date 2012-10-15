@@ -9,7 +9,7 @@ INSTANCE_NAME=$BUILD_TAG
 SQLCMD=sqlcmd
 COMPRESSED_BACKUP_EXE=V1SDKTests_sql_selfextract.exe
 BACKUP_FILE=V1SDKTests.sql
-V1_SETUP=VersionOne.Setup-Ultimate-latest.exe
+V1_SETUP=VersionOne.Setup.exe
 RESTORE_DB=true
 DB_SERVER="(local)"
 

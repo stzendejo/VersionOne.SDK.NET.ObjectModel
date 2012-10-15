@@ -4,7 +4,7 @@ set -x
 set -e
 
 INSTANCENAME=$BUILD_TAG
-V1_SETUP=VersionOne.Setup-Ultimate-latest.exe
+V1_SETUP=VersionOne.Setup.exe
 
 
 cd $WORKSPACE/TestSetup

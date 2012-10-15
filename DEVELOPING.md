@@ -3,39 +3,49 @@ The ObjectModel library provide a strongly-typed model on top of the VersionOne 
 
 ## How to get the library as a precompiled package
 
-Use the NuGet package manager from Visual Studio or nuget.exe. Search for `VersionOne.SDK.ObjectModel` to find the precompiled package. Packages installed via NuGet have been tested by VersionOne against the product release version specified in the description of the package.
+_Do this if you only want to use the functionality, but are not interested in compiling from source or in contributing code to the project._
 
-## How to clone the source code repository from GitHub
+Use the NuGet package manager from Visual Studio or nuget.exe. Search for `VersionOne.SDK.ObjectModel` to find the precompiled package. Packages installed via NuGet have been tested by VersionOne against the product release version specified in the description of the package. Learn more about NuGet here: http://docs.nuget.org/docs/start-here/overview
 
-1. Install _Git for Windows_ from http://msysgit.github.com/
-2. Run Git Bash
-3. Type `git clone git@github.com:versionone/VersionOne.SDK.NET.ObjectModel.git`
+## How to obtain the source code
 
-Note: you may have to set some authentication and SSH keys first. 
+_You should obtain the source code if you:_
 
-_TODO: add more details about this..._
+1. Want to compile it yourself, perhaps to the better understand it or debug it.
+2. Would like to contribute code to the project to improve it.
 
-## How to download the source code as a zip file from GitHub
+You can obtain it in two ways:
+
+### How to download the source code as a zip file from GitHub
+
+_Do this if you are not planning to contribute code back to the project._
 
 1. Navigate to https://github.com/versionone/VersionOne.SDK.NET.ObjectModel
 2. Click the ZIP button near the top. This downloads all the code as a single zip file.
 
+### How to clone the source code repository from GitHub
+
+_Do this if you want to contribute code to the project._
+
+1. Install _Git for Windows_ from http://msysgit.github.com/
+2. Run Git Bash from the start menu
+3. Type `git clone git@github.com:versionone/VersionOne.SDK.NET.ObjectModel.git`
+
 ## How to build the library from source
 
-First, you must enable NuGet package support in the solution. To do this:
+_Once you have the code, you want to build it, right? Not so fast. First, enable NuGet package support in the solution:_
 
 1. Open the `VersionOne.SDK.NET.ObjectModel.sln` solution in Visual Studio.
 2. Right click on the solution node and click `Enable NuGet Package Restore`.
 3. From the program menu, click `Tools > Library Package Manager > Package Manager Console`
 4. From the Package Manager Console, you should see the message `Some NuGet packages are missing from this solution. Click to restore.` Click the `Restore` button next to it.
-
-Those steps should download all the needed packages from the NuGet gallery. You can now build the solution.
+5. Those steps should download all the needed packages from the NuGet gallery. You can now `Build` the solution.
 
 ## How to upgrade NuGet packages to their latest versions
 
 NuGet can also update the installed packages to the most recent compatible versions. The Object Model project depends on the VersionOne API Client library, which evolves at a much slower rate, so it's unlikely to need upgrading.
 
-To install updated packages:
+To check for and install updated packages:
 
 1. From the program menu, click `Tools > Library Package Manager > Package Manager Console`
 2. From the Package Manager Console, type: `Update-Package`
@@ -69,16 +79,16 @@ If package updates are available, you'd see something like:
 1. MS SQL Server 2008 or higher
 2. Microsoft IIS 7 or higher
 3. Git for Windows (For its Git Bash command line shell)
+4. One of either the VersionOne Ultimate or Versionone Enterprise installer files
 
 _Install Git for Windows from http://msysgit.github.com/ if you do not already have it._
 
 ### If SQL Server is installed at "(local)" on your workstation
 
-1. If you have not already done so, then build the `ObjectModel.Tests` project
-2. Start Git Bash and type: `cd /<path>/<to>/VersionOne.SDK.NET.ObjectModel`
-3. Copy the VersionOne installer exe to the `TestSetup` folder. Example: `VersionOne.Setup-Ultimate-12.2.2.3601.exe`
-4. If you don't use Ultimate, then you'll need to modify the `TestSetup/copy_latest_setup_to_standard_name.sh` script and change the `SETUP =` line to reflect the version.
-5. From the root of the `VersionOne.SDK.NET.ObjectModel` folder type: `". ./run_integration_tests.sh"`
+1. If you have not already done so, then build the `ObjectModel.Tests` project from Visual Studio
+2. Run `Git Bash` from the start menu and type: `cd /c/<path>/<to>/VersionOne.SDK.NET.ObjectModel` (Note: Git Bash is case sensitive. And, if you downloaded the zip it might have a much longer folder name)
+3. Copy the VersionOne installer exe to the `TestSetup` folder. Example: `VersionOne.Setup-Ultimate-12.2.2.3601.exe`, or `VersionOne.Setup-Enterprise-12.2.2.3601.exe`
+4. From the root of the `VersionOne.SDK.NET.ObjectModel` folder type: `". ./run_integration_tests.sh"`
 
 This will install VersionOne to `http://localhost/V1SDKTests_<date and timestamp>`. It will also run the integration tests using the NUnit console test runner, and store the results in `run_integration_tests.xml` when finished. There should be no failures if you are using Ultimate edition, though a number are currently ignored. If you are using Enterprise edition, you will see a number of failures due to licensing restrictions.
 
@@ -88,7 +98,7 @@ In this case:
 
 1. Open the file `TestSetup/restore_db_and_install_v1.sh`.
 2. Change the `DB_SERVER` variable to point to your instance, such as `(local)\SQL2008` or `dbserver\V1Instance`
-2. Save it, and see step 4 from above.
+2. Save it, and see step 1 from above.
 
 ### Notes on running the integration tests from Visual Studio for debugging
 
