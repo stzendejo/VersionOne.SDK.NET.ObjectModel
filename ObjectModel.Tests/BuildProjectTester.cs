@@ -125,7 +125,7 @@ namespace VersionOne.SDK.ObjectModel.Tests
             BuildRunFilter filter = new BuildRunFilter();
             filter.References.Add("A");
             filter.Status.Add("Passed");
-            ICollection<BuildRun> runs = project.GetBuildRuns(filter);
+            ICollection<BuildRun> runs = project.GetBuildRuns(filter);            
             CollectionAssert.AreEquivalent(new string[] { "Run 1", "Run 2" }, DeriveListOfNamesFromAssets(runs));
         }
     }
