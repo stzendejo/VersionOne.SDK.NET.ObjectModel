@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using VersionOne.SDK.APIClient;
@@ -13,19 +14,26 @@ namespace VersionOne.SDK.ObjectModel.Tests {
         private EntityFactory entityFactory;
         private V1Instance instance;
         
-        protected virtual string ApplicationPath {
+		protected virtual string ApplicationPath
+		{
 			get
 			{
-				var url = System.Environment.GetEnvironmentVariable("TEST_URL");
-				if(url == null)
+				const string settingName = "TEST_URL";
+				var url = System.Environment.GetEnvironmentVariable(settingName);
+				if (string.IsNullOrWhiteSpace(url))
 				{
-				    url = "http://localhost/V1SDKTests/";
-                    // TODO: below will blow up a local test run that is not automated by bat file...need a better way
-				    //throw new ArgumentException("Must specify the V1 test instance URL in environment variable TEST_URL");
+					url = System.Configuration.ConfigurationManager.AppSettings[settingName];
+					if (string.IsNullOrWhiteSpace(url))
+					{
+						url = "http://localhost/V1SDKTests/";
+					}
 				}
+
+				url = url.Trim();
+
 				return url;
-			} 
-        }
+			}
+		}
         		
         protected virtual string Username {
             get { return System.Environment.GetEnvironmentVariable("TEST_USER") ?? "admin"; }
