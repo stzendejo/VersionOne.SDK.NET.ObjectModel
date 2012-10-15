@@ -429,14 +429,12 @@ namespace VersionOne.SDK.ObjectModel {
             return GetMultiRelation<Project>("ChildrenMeAndDown[AssetState!='Closed']").AsReadOnly();
         }
 
-        private T GetFilter<T>(T filter, bool includeSubprojects) where T : ProjectAssetFilter, new() {
+        private T WithThisProjectIncludedIn<T>(T filter, bool includeSubprojects) where T : ProjectAssetFilter, new() {
             filter = filter ?? new T();
 
             filter.Project.Clear();
             if (includeSubprojects) {
-                foreach (var p in GetThisAndAllChildProjects()) {
-                    filter.Project.Add(p);
-                }
+				filter.ArbitraryWhereTerms.Add(new KeyValuePair<string, string>("Scope[AssetState!='Closed'].ParentMeAndUp", this.ID));
             } else {
                 filter.Project.Add(this);
             }
@@ -541,7 +539,7 @@ namespace VersionOne.SDK.ObjectModel {
         /// <param name="includeSubprojects">Specifies whether to include items from sub project or not. This only adds open subprojects.</param>
         /// <returns>A readonly ICollection of Epic</returns>
         public ICollection<Epic> GetEpics(EpicFilter filter, bool includeSubprojects) {
-            return Instance.Get.Epics(GetFilter(filter, includeSubprojects));
+            return Instance.Get.Epics(WithThisProjectIncludedIn(filter, includeSubprojects));
         }
 
         /// <summary>
@@ -568,7 +566,7 @@ namespace VersionOne.SDK.ObjectModel {
         /// <param name="includeSubprojects">Specifies whether to include items from sub project or not. This only adds open subprojects.</param>
         /// <returns>An ICollection of Story</returns>
         public ICollection<Story> GetStories(StoryFilter filter, bool includeSubprojects) {
-            return Instance.Get.Stories(GetFilter(filter, includeSubprojects));
+            return Instance.Get.Stories(WithThisProjectIncludedIn(filter, includeSubprojects));
         }
 
         /// <summary>
@@ -587,7 +585,7 @@ namespace VersionOne.SDK.ObjectModel {
         /// <param name="includeSubprojects">Specifies whether to include items from sub project or not. This only adds open subprojects.</param>
         /// <returns>An ICollection of Defect</returns>
         public ICollection<Defect> GetDefects(DefectFilter filter, bool includeSubprojects) {
-            return Instance.Get.Defects(GetFilter(filter, includeSubprojects));
+            return Instance.Get.Defects(WithThisProjectIncludedIn(filter, includeSubprojects));
         }
 
         /// <summary>
@@ -606,7 +604,7 @@ namespace VersionOne.SDK.ObjectModel {
         /// <param name="includeSubprojects">Specifies whether to include items from sub project or not. This only adds open subprojects.</param>
         /// <returns>Collection of Test Sets</returns>
         public ICollection<TestSet> GetTestSets(TestSetFilter filter, bool includeSubprojects) {
-            return Instance.Get.TestSets(GetFilter(filter, includeSubprojects));
+            return Instance.Get.TestSets(WithThisProjectIncludedIn(filter, includeSubprojects));
         }
 
         /// <summary>
@@ -625,7 +623,7 @@ namespace VersionOne.SDK.ObjectModel {
         /// <param name="includeSubprojects">Specifies whether to include items from sub project or not. This only adds open subprojects.</param>
         /// <returns>An ICollection of PrimaryWorkitem</returns>
         public ICollection<PrimaryWorkitem> GetPrimaryWorkitems(PrimaryWorkitemFilter filter, bool includeSubprojects) {
-            return Instance.Get.PrimaryWorkitems(GetFilter(filter, includeSubprojects));
+            return Instance.Get.PrimaryWorkitems(WithThisProjectIncludedIn(filter, includeSubprojects));
         }
 
         /// <summary>
@@ -674,7 +672,7 @@ namespace VersionOne.SDK.ObjectModel {
         /// <param name="includeSubprojects">Specifies whether to include items from sub project or not. This only adds open subprojects.</param>
         /// <returns>A readonly ICollection of Theme</returns>
         public ICollection<Theme> GetThemes(ThemeFilter filter, bool includeSubprojects) {
-            return Instance.Get.Themes(GetFilter(filter, includeSubprojects));
+			return Instance.Get.Themes(WithThisProjectIncludedIn(filter, includeSubprojects));
         }
 
         /// <summary>
@@ -694,7 +692,7 @@ namespace VersionOne.SDK.ObjectModel {
         /// <returns>An ICollection of SecondaryWorkitem</returns>
         public ICollection<SecondaryWorkitem> GetSecondaryWorkitems(SecondaryWorkitemFilter filter,
             bool includeSubprojects) {
-            return Instance.Get.SecondaryWorkitems(GetFilter(filter, includeSubprojects));
+            return Instance.Get.SecondaryWorkitems(WithThisProjectIncludedIn(filter, includeSubprojects));
         }
 
         /// <summary>
@@ -703,7 +701,7 @@ namespace VersionOne.SDK.ObjectModel {
         /// <param name="filter">Criteria to filter on. Project will be set automatically. If null, all tasks in the project are returned.</param>
         /// <returns>An ICollection of SecondaryWorkitem</returns>
         public ICollection<Task> GetTasks(TaskFilter filter) {
-            return Instance.Get.Tasks(GetFilter(filter, false));
+            return Instance.Get.Tasks(WithThisProjectIncludedIn(filter, false));
         }
 
         /// <summary>
@@ -712,7 +710,7 @@ namespace VersionOne.SDK.ObjectModel {
         /// <param name="filter">Criteria to filter on. Project will be set automatically. If null, all tests in the project are returned.</param>
         /// <returns>An ICollection of Tests</returns>
         public ICollection<Test> GetTests(TestFilter filter) {
-            return Instance.Get.Tests(GetFilter(filter, false));
+            return Instance.Get.Tests(WithThisProjectIncludedIn(filter, false));
         }
 
         /// <summary>
@@ -731,7 +729,7 @@ namespace VersionOne.SDK.ObjectModel {
         /// <param name="includeSubprojects">Specifies whether to include items from sub project or not. This only adds open subprojects.</param>
         /// <returns>A readonly ICollection of Request</returns>
         public ICollection<Request> GetRequests(RequestFilter filter, bool includeSubprojects) {
-            return Instance.Get.Requests(GetFilter(filter, includeSubprojects));
+            return Instance.Get.Requests(WithThisProjectIncludedIn(filter, includeSubprojects));
         }
 
         /// <summary>
@@ -750,7 +748,7 @@ namespace VersionOne.SDK.ObjectModel {
         /// <param name="includeSubprojects">Specifies whether to include items from sub project or not. This only adds open subprojects.</param>
         /// <returns>An ICollection of Goals</returns>
         public ICollection<Goal> GetGoals(GoalFilter filter, bool includeSubprojects) {
-            return Instance.Get.Goals(GetFilter(filter, includeSubprojects));
+            return Instance.Get.Goals(WithThisProjectIncludedIn(filter, includeSubprojects));
         }
 
         /// <summary>
@@ -769,7 +767,7 @@ namespace VersionOne.SDK.ObjectModel {
         /// <param name="includeSubprojects">Specifies whether to include items from sub project or not. This only adds open subprojects.</param>
         /// <returns>A readonly ICollection of Retrospective</returns>
         public ICollection<Retrospective> GetRetrospectives(RetrospectiveFilter filter, bool includeSubprojects) {
-            return Instance.Get.Retrospectives(GetFilter(filter, includeSubprojects));
+            return Instance.Get.Retrospectives(WithThisProjectIncludedIn(filter, includeSubprojects));
         }
 
         /// <summary>
@@ -788,7 +786,7 @@ namespace VersionOne.SDK.ObjectModel {
         /// <param name="includeSubprojects">Specifies whether to include items from sub project or not. This only adds open subprojects.</param>
         /// <returns>A readonly ICollection of Issues</returns>
         public ICollection<Issue> GetIssues(IssueFilter filter, bool includeSubprojects) {
-            return Instance.Get.Issues(GetFilter(filter, includeSubprojects));
+            return Instance.Get.Issues(WithThisProjectIncludedIn(filter, includeSubprojects));
         }
 
         /// <summary>

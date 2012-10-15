@@ -42,11 +42,21 @@ namespace VersionOne.SDK.ObjectModel.Filters {
             get { return State.Contains(Filters.State.Closed); }
         }
 
+		/// <summary>
+		///  A collection of name=value pairs that will be added to the "where" query
+		/// </summary>
+		public readonly List<KeyValuePair<string, string>> ArbitraryWhereTerms = new List<KeyValuePair<string, string>>();
+
+
         internal override void InternalModifyFilter(FilterBuilder builder) {
             base.InternalModifyFilter(builder);
 
             builder.Simple("Name", Name);
             builder.Simple("Description", Description);
+			foreach (var kvp in ArbitraryWhereTerms)
+			{
+				builder.Simple(kvp.Key, kvp.Value);
+			}
         }
 
         internal override void InternalModifyState(FilterBuilder builder) {
