@@ -88,7 +88,7 @@ _Install Git for Windows from http://msysgit.github.com/ if you do not already h
 1. If you have not already done so, then build the `ObjectModel.Tests` project from Visual Studio
 2. Run `Git Bash` from the start menu and type: `cd /c/<path>/<to>/VersionOne.SDK.NET.ObjectModel` (Note: Git Bash is case sensitive. And, if you downloaded the zip it might have a much longer folder name)
 3. Copy the VersionOne installer exe to the `TestSetup` folder. Example: `VersionOne.Setup-Ultimate-12.2.2.3601.exe`, or `VersionOne.Setup-Enterprise-12.2.2.3601.exe`
-4. From the root of the `VersionOne.SDK.NET.ObjectModel` folder type: `". ./run_integration_tests.sh"`
+4. From the root of the `VersionOne.SDK.NET.ObjectModel` folder type: _(Note: it is a . then a space, then a ./ -- not a typo!)_ `". ./run_integration_tests.sh"`
 
 This will install VersionOne to `http://localhost/V1SDKTests_<date and timestamp>`. It will also run the integration tests using the NUnit console test runner, and store the results in `run_integration_tests.xml` when finished. There should be no failures if you are using Ultimate edition, though a number are currently ignored. If you are using Enterprise edition, you will see a number of failures due to licensing restrictions.
 
@@ -99,6 +99,16 @@ In this case:
 1. Open the file `TestSetup/restore_db_and_install_v1.sh`.
 2. Change the `DB_SERVER` variable to point to your instance, such as `(local)\SQL2008` or `dbserver\V1Instance`
 2. Save it, and see step 1 from above.
+
+### Troubleshooting
+
+#### If it fails when attempting to run NUnit
+
+On some 64-bit systems, the IIS Application Pool needs to have 32 bit mode enabled. Try this instead:
+
+`. ./run_integration_tests.sh enable32bit` _(Again note that is a . space and ./)_
+
+This will set the Enable 32 Bit flag on the created Application Pool.
 
 ### Notes on running the integration tests from Visual Studio for debugging
 
