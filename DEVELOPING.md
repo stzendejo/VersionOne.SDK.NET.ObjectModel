@@ -33,7 +33,7 @@ _Do this if you want to contribute code to the project._
 
 ## How to build the library from source
 
-_Once you have the code, you want to build it, right? Not so fast. First, enable NuGet package support in the solution:_
+_Once you have the code, you want to build it, right? Not so fast. First, enable NuGet package restore support in the solution:_
 
 1. Open the `VersionOne.SDK.NET.ObjectModel.sln` solution in Visual Studio.
 2. Right click on the solution node and click `Enable NuGet Package Restore`.
