@@ -10,7 +10,7 @@ export TEST_URL=http://localhost/$BUILD_TAG/
 NUNIT_CONSOLE_RUNNER=`find packages | grep nunit-console.exe$`
 if [ -z "$NUNIT_CONSOLE_RUNNER" ]
 then
-	echo "Could not find nunint-console.exe in the packages folder. Before running this script, you must build the tests in Release mode in Visual Studio or by typing buildLocal.bat from the ObjectModel.Tests directory."
+	echo "Could not find nunit-console.exe in the packages folder. Before running this script, you must build the tests in Release mode in Visual Studio or by typing buildLocal.bat from the ObjectModel.Tests directory."
 	cd $WORKSPACE
 	return -1
 fi
@@ -25,11 +25,12 @@ $WORKSPACE/TestSetup/restore_db_and_install_v1.sh
 
 export APP_POOL=V1-Core-$BUILD_TAG
 
-#echo "C:\Windows\system32\inetsrv\appcmd.exe set apppool "$APP_POOL" /enable32BitAppOnWin64:true" >enable32BitInAppPool.bat
-#cmd \\/c enable32BitInAppPool.bat
-#rm enable32BitInAppPool.bat
+if [ "$1" = "enable32bit" ]
+then		
+	/c/Windows/system32/inetsrv/appcmd.exe set apppool "$APP_POOL" //enable32BitAppOnWin64:true
+fi
 
-cmd \\/c pause
+read -p "Hit any key to continue..."
 
 # Run tests
 
@@ -42,8 +43,6 @@ $NUNIT_CONSOLE_RUNNER //framework:net-4.0 //labels //stoponerror ${WORKSPACE}\\O
 
 # Clean up
 $WORKSPACE/TestSetup/remove_v1_and_delete_db.sh
-echo "C:\Windows\system32\inetsrv\appcmd.exe delete apppool "$APP_POOL"" >deleteAppPool.bat
-cmd \\/c deleteAppPool.bat
-rm deleteAppPool.bat
+/c/Windows/system32/inetsrv/appcmd.exe delete apppool "$APP_POOL"
 
 cd $WORKSPACE
