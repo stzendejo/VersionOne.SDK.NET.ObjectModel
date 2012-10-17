@@ -1,4 +1,4 @@
-# VersionOne SDK.NET License #
+# VersionOne SDK.NET ObjectModel License #
 Copyright (c) 2008-2012 VersionOne, Inc.
 All rights reserved.
 
