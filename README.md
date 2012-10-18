@@ -9,48 +9,32 @@ This product includes software developed at VersionOne (http://versionone.com/).
 ## Table of Contents
 
 * System Requirements
-* License
-* Acknowledgements
+* How to get the library as a precompiled package
+* Getting Help
 
 ## Other Resources
 
 * [DEVELOPING.md](DEVELOPING.md) - Documentation on developing with 
-  VersionOne SDK.NET ObjectModel, including how to get a precompiled NuGet package
+  VersionOne SDK.NET ObjectModel
 * [LICENSE.md](LICENSE.md) - User license
 
 ## System Requirements
 
 ### VersionOne SDK.NET ObjectModel Library
 * .NET Framework 4.0
-These libraries have only been tested in a Windows environment. They 
-have not been tested under Mono.
+These libraries have only been tested in a Windows environment. They have not been tested under Mono.
 
-## Acknowledgements
-Package management support is provided by NuGet and NuGetPowerTools. 
+## How to get the library as a precompiled package
 
-NuGet is open source software.
+_Do this if you only want to use the functionality, but are not interested in compiling from source or in contributing code to the project._
 
-The original software is available from:
-  http://nuget.codeplex.com/
+Use the NuGet package manager from Visual Studio or nuget.exe. Search for `VersionOne.SDK.ObjectModel` to find the precompiled package. Packages installed via NuGet have been tested by VersionOne against the product release version specified in the description of the package. Learn more about NuGet here: http://docs.nuget.org/docs/start-here/overview
 
-This software is available under an Apache License v2.0:
-  http://nuget.codeplex.com/license
+## Getting Help
+Need to bootstrap on VersionOne SDK.NET quickly? VersionOne services brings a wealth of development experience to training and mentoring on VersionOne SDK.NET:
 
-NuGetPowerTools is open source software, written by David Fowler.
+http://www.versionone.com/training/product_training_services/
 
-The original software is available from:
-  https://github.com/davidfowl/NuGetPowerTools
+Have a question? Get help from the community of VersionOne developers:
 
-This software is available under an Apache License v2.0:
-  http://nuget.codeplex.com/license
-
-Unit test support is provided by the NUnit library, which is open 
-source software, written by Charlie Poole, James W. Newkirk, Michael 
-C. Two, Alexei A. Vorontsov, and Philip A. Craig, with respective 
-copyrights.
-
-The original software is available from:
-  http://www.nunit.org/
-
-This library is available under an NUnit License:
-  http://www.nunit.org/index.php?p=license&r=2.5.10
+http://groups.google.com/group/versionone-dev/
