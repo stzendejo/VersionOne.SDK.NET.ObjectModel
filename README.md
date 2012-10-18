@@ -22,6 +22,7 @@ This product includes software developed at VersionOne (http://versionone.com/).
 
 ### VersionOne SDK.NET ObjectModel Library
 * .NET Framework 4.0
+
 These libraries have only been tested in a Windows environment. They have not been tested under Mono.
 
 ## How to get the library as a precompiled package
