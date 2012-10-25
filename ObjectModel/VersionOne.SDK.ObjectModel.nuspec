@@ -5,22 +5,18 @@
     <version>$version$</version>
     <title>$title$</title>
     <authors>$author$</authors>
-    <owners>$author$</owners>
-    <!--
-	Change when REPO is public:
-    <licenseUrl></licenseUrl>
+    <owners>$author$</owners>    
+    <licenseUrl>https://github.com/versionone/VersionOne.SDK.NET.ObjectModel/blob/master/LICENSE.md</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance> 
-    <projectUrl>https://github.com/versionone/VersionOne.SDK.NET/</projectUrl>
-    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
--->
-    <description>$description$</description>
+    <projectUrl>https://github.com/versionone/VersionOne.SDK.NET.ObjectModel/</projectUrl>
+    <iconUrl>https://raw.github.com/versionone/v1jssdk/master/32px.png</iconUrl>
+    <description>Provides strongly-typed VersionOne model objects (Project, Story, Iteration, etc) for building custom applications against the VersionOne platform.</description>
     <!--
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
--->
+    -->
     <dependencies>
-       	<dependency id="VersionOne.SDK.APIClient" version="[12.2,12.3)" />
+       	<dependency id="VersionOne.SDK.APIClient" version="[12.2,13)" />
     </dependencies>
-
     <copyright>Copyright 2012</copyright>
     <tags>V1 VersionOne API ObjectModel agile</tags>
   </metadata>
