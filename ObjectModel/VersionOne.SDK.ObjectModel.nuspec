@@ -9,7 +9,7 @@
     <licenseUrl>https://github.com/versionone/VersionOne.SDK.NET.ObjectModel/blob/master/LICENSE.md</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance> 
     <projectUrl>https://github.com/versionone/VersionOne.SDK.NET.ObjectModel/</projectUrl>
-    <iconUrl>https://raw.github.com/versionone/v1jssdk/master/32px.png</iconUrl>
+    <iconUrl>https://raw.github.com/versionone/VersionOne.SDK.NET.ObjectModel/master/32px.png</iconUrl>
     <description>Provides strongly-typed VersionOne model objects (Project, Story, Iteration, etc) for building custom applications against the VersionOne platform.</description>
     <!--
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
