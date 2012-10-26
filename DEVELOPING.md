@@ -36,7 +36,7 @@ _Do this if you want to contribute code to the project._
 _Once you have the code, you want to build it, right? Not so fast. First, enable NuGet package restore support in the solution:_
 
 1. Open the `VersionOne.SDK.NET.ObjectModel.sln` solution in Visual Studio.
-2. Right click on the solution node and click `Enable NuGet Package Restore`.
+2. Right click on the `VersionOne.SDK.NET.ObjectModel` solution node and click `Enable NuGet Package Restore`.
 3. From the program menu, click `Tools > Library Package Manager > Package Manager Console`
 4. From the Package Manager Console, you should see the message `Some NuGet packages are missing from this solution. Click to restore.` Click the `Restore` button next to it.
 5. Those steps should download all the needed packages from the NuGet gallery. You can now `Build` the solution.
