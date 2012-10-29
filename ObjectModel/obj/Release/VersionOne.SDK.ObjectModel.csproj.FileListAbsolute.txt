@@ -1,7 +1,0 @@
-C:\Projects\v1.NETSdk.GitHub\VersionOne.SDK.NET.ObjectModel\ObjectModel\bin\Release\VersionOne.SDK.ObjectModel.XML
-C:\Projects\v1.NETSdk.GitHub\VersionOne.SDK.NET.ObjectModel\ObjectModel\bin\Release\VersionOne.SDK.ObjectModel.dll
-C:\Projects\v1.NETSdk.GitHub\VersionOne.SDK.NET.ObjectModel\ObjectModel\bin\Release\VersionOne.SDK.ObjectModel.pdb
-C:\Projects\v1.NETSdk.GitHub\VersionOne.SDK.NET.ObjectModel\ObjectModel\bin\Release\VersionOne.SDK.APIClient.dll
-C:\Projects\v1.NETSdk.GitHub\VersionOne.SDK.NET.ObjectModel\ObjectModel\obj\Release\VersionOne.SDK.ObjectModel.csprojResolveAssemblyReference.cache
-C:\Projects\v1.NETSdk.GitHub\VersionOne.SDK.NET.ObjectModel\ObjectModel\obj\Release\VersionOne.SDK.ObjectModel.dll
-C:\Projects\v1.NETSdk.GitHub\VersionOne.SDK.NET.ObjectModel\ObjectModel\obj\Release\VersionOne.SDK.ObjectModel.pdb
