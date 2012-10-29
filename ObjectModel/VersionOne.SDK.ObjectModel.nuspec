@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance> 
     <projectUrl>https://github.com/versionone/VersionOne.SDK.NET.ObjectModel/</projectUrl>
     <iconUrl>https://raw.github.com/versionone/VersionOne.SDK.NET.ObjectModel/master/32px.png</iconUrl>
-    <description>Provides strongly-typed VersionOne model objects (Project, Story, Iteration, etc) for building custom applications against the VersionOne platform. For details about what product releases this has been tested against, see ttps://github.com/versionone/VersionOne.SDK.NET.ObjectModel/wiki/Which-product-releases-has-the-ObjectModel-library-been-tested-against%3F</description>
+    <description>Provides strongly-typed VersionOne model objects (Project, Story, Iteration, etc) for building custom applications against the VersionOne platform. For details about what product releases this has been tested against, see https://github.com/versionone/VersionOne.SDK.NET.ObjectModel/wiki/Which-product-releases-has-the-ObjectModel-library-been-tested-against%3F</description>
     <!--
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
     -->
