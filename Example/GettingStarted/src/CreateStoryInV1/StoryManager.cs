@@ -29,7 +29,9 @@ namespace CreateStoryInV1
             UserName = Config.UserName;
             Password = Config.Password;
 
-            UniqueKey = Guid.NewGuid().ToString();
+            UniqueKey = System.Environment.UserName + "@[" +
+                        DateTime.Now.ToShortDateString() + " " +
+                        DateTime.Now.ToLongTimeString() + "]";
         }
 
         public StoryDto Create(StoryDto story)

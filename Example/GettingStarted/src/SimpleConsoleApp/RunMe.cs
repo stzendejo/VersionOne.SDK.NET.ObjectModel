@@ -27,7 +27,8 @@ namespace SimpleConsoleApp
             }
 
             var yourName = System.Environment.UserName;
-            var storyName = string.Format("{0}'s story", yourName);
+            var storyName = string.Format("{0}'s story at {1}", yourName, 
+                DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString());
             var attributes = new Dictionary<string, object>
                 {
                     {
@@ -41,8 +42,9 @@ namespace SimpleConsoleApp
 
             var v1StoryId = story.ID.Token;
 
-            Console.WriteLine("Created story with id {0} and description '{1}' in project named {2}",
+            Console.WriteLine("Created story with id {0}, name {1}, and description '{2}' in project named {3}",
                               v1StoryId,
+                              story.Name,
                               story.Description,
                               story.Project.Name);
             Console.WriteLine();
