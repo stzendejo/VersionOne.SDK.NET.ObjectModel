@@ -14,9 +14,9 @@ This product includes software developed at VersionOne (http://versionone.com/).
 
 ## Other Resources
 
-* [DEVELOPING.md](DEVELOPING.md) - Documentation on developing with 
+* [DEVELOPING.md](https://github.com/versionone/VersionOne.SDK.NET.ObjectModel/blob/master/DEVELOPING.md) - Documentation on developing with 
   VersionOne SDK.NET ObjectModel
-* [LICENSE.md](LICENSE.md) - User license
+* [LICENSE.md](https://github.com/versionone/VersionOne.SDK.NET.ObjectModel/blob/master/LICENSE.md) - User license
 
 ## System Requirements
 
