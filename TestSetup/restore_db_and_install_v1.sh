@@ -11,7 +11,7 @@ COMPRESSED_BACKUP_EXE=V1SDKTests_sql_selfextract.exe
 BACKUP_FILE=V1SDKTests.sql
 V1_SETUP=VersionOne.Setup.exe
 RESTORE_DB=true
-DB_SERVER="(local)"
+# set by jenkins now (1/9/12) DB_SERVER="(local)"
 
 cd $WORKSPACE/TestSetup
 pwd
