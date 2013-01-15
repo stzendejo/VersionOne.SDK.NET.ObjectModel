@@ -26,14 +26,14 @@ namespace VersionOne.SDK.ObjectModel.Tests
         [Test]
         public void SimpleProjectAttributes()
         {
-            var project = Instance.Get.ProjectByID("Scope:0");
-            Assert.AreEqual(new DateTime(2007, 9, 8), project.BeginDate);
-            Assert.IsNull(project.EndDate);
+            var project = Instance.Get.ProjectByID("Scope:1018");
+            Assert.AreEqual(new DateTime(2007, 9, 7), project.BeginDate);
+            Assert.AreEqual(new DateTime(2009, 1, 5), project.EndDate);
             Assert.IsTrue(project.IsActive);
             Assert.IsFalse(project.IsClosed);
-            Assert.IsNull(project.ParentProject);
+            Assert.IsNotNull(project.ParentProject);
             Assert.IsNotNull(project.Schedule);
-            Assert.AreEqual(new Duration(14, Duration.Unit.Days), project.Schedule.IterationLength);
+            Assert.AreEqual(new Duration(7, Duration.Unit.Days), project.Schedule.IterationLength);
             Assert.AreEqual(new Duration(0, Duration.Unit.Days), project.Schedule.IterationGap);
         }
 
