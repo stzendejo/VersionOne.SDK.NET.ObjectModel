@@ -79,14 +79,14 @@ If package updates are available, you'd see something like:
 1. MS SQL Server 2008 or higher
 2. Microsoft IIS 7 or higher
 3. Git for Windows (For its Git Bash command line shell)
-4. One of either the VersionOne Ultimate or Versionone Enterprise installer files
+4. One of either the VersionOne Ultimate or Versionone Enterprise installer files [downloaded from the VersionOne community site](http://community.versionone.com/Release%20Notes/Forms/ProductUpdates.aspx)
 
 _Install Git for Windows from http://msysgit.github.com/ if you do not already have it._
 
 ### If SQL Server is installed at "(local)" on your workstation
 
 1. If you have not already done so, then build the `ObjectModel.Tests` project from Visual Studio
-2. Run `Git Bash` from the start menu and type: `cd /c/<path>/<to>/VersionOne.SDK.NET.ObjectModel` (Note: Git Bash is case sensitive. And, if you downloaded the zip it might have a much longer folder name)
+2. As `Administrator`, run `Git Bash` from the start menu and type: `cd /c/<path>/<to>/VersionOne.SDK.NET.ObjectModel` (Note: Git Bash is case sensitive. And, if you downloaded the zip it might have a much longer folder name)
 3. Copy the VersionOne installer exe to the `TestSetup` folder. Example: `VersionOne.Setup-Ultimate-12.2.2.3601.exe`, or `VersionOne.Setup-Enterprise-12.2.2.3601.exe`
 4. From the root of the `VersionOne.SDK.NET.ObjectModel` folder type: _(Note: it is a . then a space, then a ./ -- not a typo!)_ `". ./run_integration_tests.sh"`
 

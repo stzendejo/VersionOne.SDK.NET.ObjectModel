@@ -11,7 +11,7 @@ COMPRESSED_BACKUP_EXE=V1SDKTests_sql_selfextract.exe
 BACKUP_FILE=V1SDKTests.sql
 V1_SETUP=VersionOne.Setup.exe
 RESTORE_DB=true
-DB_SERVER="(local)"
+# set by jenkins now (1/9/12) DB_SERVER="(local)"
 
 cd $WORKSPACE/TestSetup
 pwd
@@ -21,7 +21,8 @@ then
     echo "Unpacking database backup from self-extracting archive"
     ./$COMPRESSED_BACKUP_EXE -y
     echo "Restoring database..."
-    $SQLCMD -S $DB_SERVER -E -Q "DROP DATABASE [$DB_NAME]" >restore_db_and_install_v1.log
+
+    $SQLCMD -S $DB_SERVER -E -Q "IF  EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'$DB_NAME') DROP DATABASE [$DB_NAME]" >restore_db_and_install_v1.log
     $SQLCMD -S $DB_SERVER -E -Q "CREATE DATABASE [$DB_NAME]" >>restore_db_and_install_v1.log
     $SQLCMD -S $DB_SERVER -d $DB_NAME -E -i $BACKUP_FILE >>restore_db_and_install_v1.log
     echo "Removing DB Backup file"
