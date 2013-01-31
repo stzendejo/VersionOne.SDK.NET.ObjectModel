@@ -1,7 +1,5 @@
-## Acknowledgements ##
-Package management support is provided by NuGet and NuGetPowerTools. 
-
-NuGet is open source software.
+# Acknowledgements
+Package management support is provided by NuGet, which is open-source software.
 
 The original software is available from:
    http://nuget.codeplex.com/
@@ -9,22 +7,18 @@ The original software is available from:
 This software is available under an Apache License v2.0:
    http://nuget.codeplex.com/license
 
-NuGetPowerTools is open source software, written by David Fowler.
+Logging is provided by log4net, which is open-source software.
 
 The original software is available from:
-   https://github.com/davidfowl/NuGetPowerTools
+   http://logging.apache.org/log4net/
 
 This software is available under an Apache License v2.0:
-   http://nuget.codeplex.com/license
+   http://logging.apache.org/log4net/license.html
 
-Unit test support is provided by the NUnit library, which is open 
-source software, written by Charlie Poole, James W. Newkirk, Michael 
-C. Two, Alexei A. Vorontsov, and Philip A. Craig, with respective 
-copyrights.
+Dependency injection is provided by Ninject, which is open-source software.
 
 The original software is available from:
-   http://www.nunit.org/
+   http://www.ninject.org/
 
-This library is available under an NUnit License:
-   http://www.nunit.org/index.php?p=license&r=2.5.10
-   
+This software is available under an Apache License 2.0:
+   https://github.com/ninject/ninject/blob/master/LICENSE.txt
