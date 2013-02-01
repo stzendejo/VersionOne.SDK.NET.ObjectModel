@@ -31,6 +31,7 @@ fi
 echo "Installing VersionOne at http://localhost/${INSTANCE_NAME} associated with DB Server: ${DB_SERVER} and DB Name: ${DB_NAME}..."
 
 ./$V1_SETUP -Quiet:2 -DbServer:$DB_SERVER -LogFile:$WORKSPACE\\TestSetup\\setup.log -DBName:$DB_NAME $INSTANCE_NAME
+echo V1 setup exits with code $?
 
 if [ $? -gt 0 ]
 then 
