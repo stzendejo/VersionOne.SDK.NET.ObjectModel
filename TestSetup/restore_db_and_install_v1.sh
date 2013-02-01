@@ -35,6 +35,7 @@ echo "Installing VersionOne at http://localhost/${INSTANCE_NAME} associated with
 if [ $? -gt 0 ]
 then 
   tail -50 $WORKSPACE/TestSetup/setup.log | grep Exception
+  exit 1
 else
     echo "Thank you, you can browse to http://localhost/$INSTANCE_NAME and login with admin / admin, and you should be able to execute the integration tests now..."
     
