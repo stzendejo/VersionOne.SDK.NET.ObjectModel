@@ -1,1 +1,0 @@
-..\..\GetBuildTools\bin\NuGet\RestorePackagesOnly.bat VersionOne.SDK.ObjectModel.Tests.csproj
