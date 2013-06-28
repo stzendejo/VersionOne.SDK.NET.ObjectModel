@@ -1,7 +1,4 @@
-#!/bin/bash
-
-set -x
-set -e
+#!/bin/bash -xe
 
 # copy the latest version of setup to a standard name for other scripts 
 
