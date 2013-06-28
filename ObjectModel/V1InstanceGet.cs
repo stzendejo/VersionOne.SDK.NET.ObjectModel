@@ -343,12 +343,22 @@ namespace VersionOne.SDK.ObjectModel {
             }
 
             /// <summary>
-            /// Get Conversation/Expression filtered by the criteria specified in the passed filter.
+            /// Get Conversation filtered by the criteria specified in the passed filter.
             /// </summary>
             /// <param name="filter">Limit the items returned. If null, then all items returned.</param>
             /// <returns>ICollection of the items as specified in the filter.</returns>
             public ICollection<Conversation> Conversations(ConversationFilter filter) {
                 return Get<Conversation>(filter ?? new ConversationFilter());
+            }
+
+            /// <summary>
+            /// Get Expression filtered by the criteria specified in the passed filter.
+            /// </summary>
+            /// <param name="filter">Limit the items returned. If null, then all items returned.</param>
+            /// <returns>ICollection of the items as specified in the filter.</returns>
+            public ICollection<Expression> Expressions(ExpressionFilter filter)
+            {
+                return Get<Expression>(filter ?? new ExpressionFilter());
             }
 
             internal ICollection<MessageReceipt> MessageReceipts(MessageReceiptFilter filter) {
@@ -661,6 +671,16 @@ namespace VersionOne.SDK.ObjectModel {
             /// <returns>an instance of an Conversation or null if ID is invalid.</returns>
             public Conversation ConversationByID(AssetID id) {
                 return GetByID<Conversation>(id);
+            }
+
+            /// <summary>
+            /// Returns a Expression with the given ID or null if the ID is invalid.
+            /// </summary>
+            /// <param name="id">ID of the Expression to retrieve.</param>
+            /// <returns>an instance of an Expression or null if ID is invalid.</returns>
+            public Expression ExpressionByID(AssetID id)
+            {
+                return GetByID<Expression>(id);
             }
 
             /// <summary>

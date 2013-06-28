@@ -26,7 +26,7 @@ $WORKSPACE/TestSetup/restore_db_and_install_v1.sh
 export APP_POOL=V1-Core-$BUILD_TAG
 
 if [ "$1" = "enable32bit" ]
-then		
+then
 	/c/Windows/system32/inetsrv/appcmd.exe set apppool "$APP_POOL" //enable32BitAppOnWin64:true
 fi
 

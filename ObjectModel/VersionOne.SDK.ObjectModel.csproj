@@ -98,6 +98,7 @@
     <Compile Include="Environment.cs" />
     <Compile Include="Epic.cs" />
     <Compile Include="Exceptions.cs" />
+    <Compile Include="Expression.cs" />
     <Compile Include="Filters\AttachmentFilter.cs" />
     <Compile Include="Filters\BaseAssetFilter.cs" />
     <Compile Include="Filters\BuildProjectFilter.cs" />

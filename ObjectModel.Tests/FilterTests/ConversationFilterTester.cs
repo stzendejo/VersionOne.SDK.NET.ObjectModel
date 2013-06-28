@@ -1,164 +1,164 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using VersionOne.SDK.ObjectModel.Filters;
 using VersionOne.SDK.APIClient;
 
 namespace VersionOne.SDK.ObjectModel.Tests.FilterTests {
     [TestFixture]
-    public class ConversationFilterTester : BaseSDKTester {
-        private readonly Stack<Conversation> conversationsForDelete = new Stack<Conversation>();
+    public class ExpressionFilterTester : BaseSDKTester {
+        private readonly Stack<Expression> expressionsForDelete = new Stack<Expression>();
 
         [Test]
-        public void GetConversationByFilter() {
+        public void GetExpressionByFilter() {
             const string content = "testing converstation";
 
             Member member = Instance.LoggedInMember;
-            Conversation conversation = CreateConversation(member, content);                        
-            ConversationFilter filter = new ConversationFilter();
+            Expression expression = CreateExpression(member, content);                        
+            ExpressionFilter filter = new ExpressionFilter();
             filter.Author.Add(member);
-            filter.AuthoredAt.AddTerm(FilterTerm.Operator.Equal, conversation.AuthoredAt);
+            filter.AuthoredAt.AddTerm(FilterTerm.Operator.Equal, expression.AuthoredAt);
 
-            IList<Conversation> conversations = new List<Conversation>(Instance.Get.Conversations(filter));
-            Assert.AreEqual(1, conversations.Count);
-            Conversation newConv = conversations[0];
-            Assert.AreEqual(conversation.ID, newConv.ID);
-            Assert.AreEqual(conversation.Content, newConv.Content);
+            IList<Expression> expressions = new List<Expression>(Instance.Get.Expressions(filter));
+            Assert.AreEqual(1, expressions.Count);
+            Expression newConv = expressions[0];
+            Assert.AreEqual(expression.ID, newConv.ID);
+            Assert.AreEqual(expression.Content, newConv.Content);
             Assert.AreEqual(member, newConv.Author);
         }
 
-        [Test]
-        public void GetConversationByParent() {
-            Conversation parent = CreateConversation(Instance.LoggedInMember, "parent");
-            Conversation child = CreateConversation(Instance.LoggedInMember, "child");
-            child.ParentConversation = parent;
+        //TODO:This test is no longer valid because expressions are not self referencing in this way
+/*      [Test]
+        public void GetExpressionByParent() {
+            Expression parent = CreateExpression(Instance.LoggedInMember, "parent");
+            Expression child = CreateExpression(Instance.LoggedInMember, "child");
+            child.ParentExpression = parent;
             child.Save();
-            Conversation unrelated = CreateConversation(Instance.LoggedInMember, "something else");
-            unrelated.ParentConversation = child;
+            Expression unrelated = CreateExpression(Instance.LoggedInMember, "something else");
+            unrelated.ParentExpression = child;
             unrelated.Save();
 
-            ConversationFilter filter = new ConversationFilter();
-            filter.Conversation.Add(parent);
-            ICollection<Conversation> conversations = Instance.Get.Conversations(filter);
+            ExpressionFilter filter = new ExpressionFilter();
+            filter.Expression.Add(parent);
+            ICollection<Expression> Expressions = Instance.Get.Expressions(filter);
 
-            Assert.AreEqual(2, conversations.Count);
-            CollectionAssert.Contains(conversations, child);
-            CollectionAssert.Contains(conversations, parent);
-            CollectionAssert.DoesNotContain(conversations, unrelated);
-        }
+            Assert.AreEqual(2, Expressions.Count);
+            CollectionAssert.Contains(Expressions, child);
+            CollectionAssert.Contains(Expressions, parent);
+            CollectionAssert.DoesNotContain(Expressions, unrelated);
+        }*/
 
         [Test]
-        public void GetConversationByReplyReferences() {
-            Conversation @base = CreateConversation(Instance.LoggedInMember, "base");
-            Conversation reply = CreateConversation(Instance.LoggedInMember, "a reply");
-            reply.InReplyTo = @base;
-            reply.Save();
-            Conversation unrelated = CreateConversation(Instance.LoggedInMember, "something else");
+        public void GetExpressionByReplyReferences() {
+            Expression @base = CreateExpression(Instance.LoggedInMember, "base");
+            Expression reply = Instance.Create.Expression(Instance.LoggedInMember, "a reply", null, @base);
+            Expression unrelated = CreateExpression(Instance.LoggedInMember, "something else");
 
-            ConversationFilter filter = new ConversationFilter();
+            ExpressionFilter filter = new ExpressionFilter();
             filter.InReplyTo.Add(@base);
-            ICollection<Conversation> conversations = Instance.Get.Conversations(filter);
+            ICollection<Expression> expressions = Instance.Get.Expressions(filter);
 
-            Assert.AreEqual(1, conversations.Count);
-            CollectionAssert.Contains(conversations, reply);
-            CollectionAssert.DoesNotContain(conversations, unrelated);
+            Assert.AreEqual(1, expressions.Count);
+            CollectionAssert.Contains(expressions, reply);
+            CollectionAssert.DoesNotContain(expressions, unrelated);
 
-            filter = new ConversationFilter();
+            filter = new ExpressionFilter();
             filter.Replies.Add(reply);
-            conversations = Instance.Get.Conversations(filter);
+            expressions = Instance.Get.Expressions(filter);
 
-            Assert.AreEqual(1, conversations.Count);
-            CollectionAssert.Contains(conversations, @base);
-            CollectionAssert.DoesNotContain(conversations, unrelated);
+            Assert.AreEqual(1, expressions.Count);
+            CollectionAssert.Contains(expressions, @base);
+            CollectionAssert.DoesNotContain(expressions, unrelated);
         }
 
         [Test]
-        public void GetConversationByMentions() {
+        public void GetExpressionByMentions() {
             Member firstMember = EntityFactory.CreateMember("test1");
-            Conversation firstConversation = CreateConversation(Instance.LoggedInMember, "testing - #1");
-            firstConversation.Mentions.Add(firstMember);
-            firstConversation.Save();
+            Expression firstExpression = CreateExpression(Instance.LoggedInMember, "testing - #1");
+            firstExpression.Mentions.Add(firstMember);
+            firstExpression.Save();
 
             Member secondMember = EntityFactory.CreateMember("test2");
-            Conversation secondConversation = CreateConversation(Instance.LoggedInMember, "testing - #2");
-            secondConversation.Mentions.Add(secondMember);
-            secondConversation.Save();
+            Expression secondExpression = CreateExpression(Instance.LoggedInMember, "testing - #2");
+            secondExpression.Mentions.Add(secondMember);
+            secondExpression.Save();
 
-            ConversationFilter filter = new ConversationFilter();
+            ExpressionFilter filter = new ExpressionFilter();
             filter.Mentions.Add(firstMember);
-            ICollection<Conversation> conversations = Instance.Get.Conversations(filter);
+            ICollection<Expression> expressions = Instance.Get.Expressions(filter);
 
-            Assert.AreEqual(1, conversations.Count);
-            CollectionAssert.Contains(conversations, firstConversation);
-            CollectionAssert.DoesNotContain(conversations, secondConversation);
+            Assert.AreEqual(1, expressions.Count);
+            CollectionAssert.Contains(expressions, firstExpression);
+            CollectionAssert.DoesNotContain(expressions, secondExpression);
 
-            filter = new ConversationFilter();
+            filter = new ExpressionFilter();
             filter.Mentions.Add(secondMember);
-            conversations = Instance.Get.Conversations(filter);
+            expressions = Instance.Get.Expressions(filter);
 
-            Assert.AreEqual(1, conversations.Count);
-            CollectionAssert.Contains(conversations, secondConversation);
-            CollectionAssert.DoesNotContain(conversations, firstConversation);
+            Assert.AreEqual(1, expressions.Count);
+            CollectionAssert.Contains(expressions, secondExpression);
+            CollectionAssert.DoesNotContain(expressions, firstExpression);
 
-            filter = new ConversationFilter();
+            filter = new ExpressionFilter();
             filter.Mentions.Add(firstMember);
             filter.Mentions.Add(secondMember);
-            conversations = Instance.Get.Conversations(filter);
+            expressions = Instance.Get.Expressions(filter);
 
-            Assert.AreEqual(2, conversations.Count);
-            CollectionAssert.Contains(conversations, secondConversation);
-            CollectionAssert.Contains(conversations, firstConversation);
+            Assert.AreEqual(2, expressions.Count);
+            CollectionAssert.Contains(expressions, secondExpression);
+            CollectionAssert.Contains(expressions, firstExpression);
         }
 
         [Test]
-        public void GetConversationByBaseAssets() {
+        public void GetExpressionByBaseAssets() {
             Story story = EntityFactory.CreateStory("fly to the Moon using a magnet and will power", SandboxProject);
-            Conversation firstConversation = CreateConversation(Instance.LoggedInMember, "testing - #1");
-            firstConversation.Mentions.Add(story);
-            firstConversation.Save();
+            Expression firstExpression = CreateExpression(Instance.LoggedInMember, "testing - #1");
+            firstExpression.Mentions.Add(story);
+            firstExpression.Save();
 
             Test test = EntityFactory.CreateTest("check the direction", story);
-            Conversation secondConversation = CreateConversation(Instance.LoggedInMember, "testing - #2");
-            secondConversation.Mentions.Add(test);
-            secondConversation.Save();
+            Expression secondExpression = CreateExpression(Instance.LoggedInMember, "testing - #2");
+            secondExpression.Mentions.Add(test);
+            secondExpression.Save();
 
-            ConversationFilter filter = new ConversationFilter();
+            ExpressionFilter filter = new ExpressionFilter();
             filter.Mentions.Add(story);
-            ICollection<Conversation> conversations = Instance.Get.Conversations(filter);
+            ICollection<Expression> expressions = Instance.Get.Expressions(filter);
 
-            Assert.AreEqual(1, conversations.Count);
-            CollectionAssert.Contains(conversations, firstConversation);
-            CollectionAssert.DoesNotContain(conversations, secondConversation);
+            Assert.AreEqual(1, expressions.Count);
+            CollectionAssert.Contains(expressions, firstExpression);
+            CollectionAssert.DoesNotContain(expressions, secondExpression);
 
-            filter = new ConversationFilter();
+            filter = new ExpressionFilter();
             filter.Mentions.Add(test);
-            conversations = Instance.Get.Conversations(filter);
+            expressions = Instance.Get.Expressions(filter);
 
-            Assert.AreEqual(1, conversations.Count);
-            CollectionAssert.Contains(conversations, secondConversation);
-            CollectionAssert.DoesNotContain(conversations, firstConversation);
+            Assert.AreEqual(1, expressions.Count);
+            CollectionAssert.Contains(expressions, secondExpression);
+            CollectionAssert.DoesNotContain(expressions, firstExpression);
 
-            filter = new ConversationFilter();
+            filter = new ExpressionFilter();
             filter.Mentions.Add(story);
             filter.Mentions.Add(test);
-            conversations = Instance.Get.Conversations(filter);
+            expressions = Instance.Get.Expressions(filter);
 
-            Assert.AreEqual(2, conversations.Count);
-            CollectionAssert.Contains(conversations, firstConversation);
-            CollectionAssert.Contains(conversations, secondConversation);
+            Assert.AreEqual(2, expressions.Count);
+            CollectionAssert.Contains(expressions, firstExpression);
+            CollectionAssert.Contains(expressions, secondExpression);
         }
 
-        private Conversation CreateConversation(Member member, string content) {
-            Conversation conversation = Instance.Create.Conversation(member, content);
-            conversationsForDelete.Push(conversation);
-            return conversation;
+        private Expression CreateExpression(Member member, string content) {
+            Expression expression = Instance.Create.Conversation(member, content).ContainedExpressions.FirstOrDefault();
+            expressionsForDelete.Push(expression);
+            return expression;
         }
 
         [TearDown]
         public new void TearDown() 
         {
-            while (conversationsForDelete.Count > 0) 
+            while (expressionsForDelete.Count > 0) 
             {
-                Conversation item = conversationsForDelete.Pop();
+                Expression item = expressionsForDelete.Pop();
             
                 if (item.CanDelete) {
                     item.Delete();

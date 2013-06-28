@@ -220,7 +220,10 @@ namespace VersionOne.SDK.ObjectModel {
         /// <returns>Created conversation.</returns>
         public override Conversation CreateConversation(Member author, string content) {
             var conversation = Instance.Create.Conversation(author, content);
-            conversation.Mentions.Add(this);
+            foreach (Expression containedExpression in conversation.ContainedExpressions)
+            {
+                containedExpression.Mentions.Add(this);
+            }
             conversation.Save();
             return conversation;
         }

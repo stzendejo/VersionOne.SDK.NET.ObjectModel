@@ -3,12 +3,35 @@ using System.Collections.Generic;
 using VersionOne.SDK.APIClient;
 
 namespace VersionOne.SDK.ObjectModel.Filters {
+
     /// <summary>
-    /// Filter for getting Expression/Conversation.
+    /// Filter for getting Conversation
     /// </summary>
-    public class ConversationFilter : EntityFilter {
+    public class ConversationFilter : EntityFilter
+    {
+        internal override Type EntityType
+        {
+            get { return typeof(Conversation); }
+        }
+
+        /// <summary>
+        /// Filter on the ExpressionsInConversation property.
+        /// </summary>
+        public readonly ICollection<Expression> ContainedExpressions = new List<Expression>();
+
+        internal override void InternalModifyFilter(FilterBuilder builder)
+        {
+            base.InternalModifyFilter(builder);
+            builder.MultiRelation("ContainedExpressions", ContainedExpressions);
+        }
+    }
+
+    /// <summary>
+    /// Filter for getting Expression
+    /// </summary>
+    public class ExpressionFilter : EntityFilter {
         internal override Type EntityType {
-            get { return typeof (Conversation); }
+            get { return typeof (Expression); }
         }
 
         /// <summary>
@@ -24,22 +47,17 @@ namespace VersionOne.SDK.ObjectModel.Filters {
         /// <summary>
         /// Filter on the Conversation property.
         /// </summary>
-        public readonly ICollection<Conversation> Conversation = new List<Conversation>();
-
-        /// <summary>
-        /// Filter on the ExpressionsInConversation property.
-        /// </summary>
-        public readonly ICollection<Conversation> ExpressionsInConversation = new List<Conversation>();
+        public readonly ICollection<Conversation> BelongsTo = new List<Conversation>();
 
         /// <summary>
         /// Filter on the InReplyTo property.
         /// </summary>
-        public readonly ICollection<Conversation> InReplyTo = new List<Conversation>();
+        public readonly ICollection<Expression> InReplyTo = new List<Expression>();
 
         /// <summary>
         /// Filter on the Replies property.
         /// </summary>
-        public readonly ICollection<Conversation> Replies = new List<Conversation>();
+        public readonly ICollection<Expression> Replies = new List<Expression>();
 
         /// <summary>
         /// Filter on the Mentions property.
@@ -72,8 +90,7 @@ namespace VersionOne.SDK.ObjectModel.Filters {
 
             builder.Relation("Author", Author);
             builder.Comparison("AuthoredAt", AuthoredAt);
-            builder.Relation("Conversation", Conversation);
-            builder.MultiRelation("ExpressionsInConversation", ExpressionsInConversation);
+            builder.Relation("BelongsTo", BelongsTo);
             builder.Relation("InReplyTo", InReplyTo);
             builder.MultiRelation("Replies", Replies);
             builder.MultiRelation("Mentions", Mentions);

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using VersionOne.SDK.APIClient;
 
@@ -1165,43 +1166,90 @@ namespace VersionOne.SDK.ObjectModel {
                 return regressionTest;
             }
 
-
             /// <summary>
-            /// Add new Conversation with author as current logged user.
+            /// Add new Conversation with one expression with author as current logged user.
             /// </summary>
-            /// <param name="content">Content of Conversation.</param>
+            /// <param name="content">Content of Conversation Expression.</param>
             /// <returns>Newly created Conversation.</returns>
             public Conversation Conversation(string content) {
                 return Conversation(instance.LoggedInMember, content, null);
             }
 
             /// <summary>
-            /// Add new Conversation.
+            /// Add new Expression with author as current logged user.
             /// </summary>
-            /// <param name="author">Author of Conversation.</param>
-            /// <param name="content">Content of Conversation.</param>
+            /// <param name="content">Content of Expression.</param>
+            /// <param name="belongsTo">Conversation this Expression Belongs To</param>
+            /// <returns>Newly created Expression.</returns>
+            public Expression Expression(string content, Conversation belongsTo)
+            {
+                return Expression(instance.LoggedInMember, content, null, belongsTo, null);
+            }
+
+            /// <summary>
+            /// Add new Conversation with one expression.
+            /// </summary>
+            /// <param name="author">Author of Conversation Expression.</param>
+            /// <param name="content">Content of Conversation Expression.</param>
             /// <returns>Newly created Conversation.</returns>
             public Conversation Conversation(Member author, string content) {
                 return Conversation(author, content, null);
             }
 
             /// <summary>
-            /// Add new Conversation.
+            /// Add new Conversation with One Expression
             /// </summary>
-            /// <param name="author">Author of Conversation.</param>
-            /// <param name="content">Content of Conversation.</param>
+            /// <param name="author">Author of Conversation Expression.</param>
+            /// <param name="content">Content of Conversation Expression.</param>
             /// <param name="attributes">Additional attributes that should be set for Conversation</param>
             /// <returns>Newly created Conversation.</returns>
-            public Conversation Conversation(Member author, string content, IDictionary<string, object> attributes) {
-                var conversation = new Conversation(instance) {
-                    Author = author, 
-                    AuthoredAt = DateTime.UtcNow, 
-                    Content = content
-                };
-                AddAttributes(conversation, attributes);
+            public Conversation Conversation(Member author, string content, IDictionary<string, object> attributes)
+            {
+                var conversation = new Conversation(instance);                
                 conversation.Save();
+                var expression = Expression(author, content, attributes, conversation, null);
+                if (attributes != null) AddAttributes(conversation, attributes);
+                expression.Save();
+                return instance.Get.ConversationByID(conversation.ID);
+            }
 
-                return conversation;
+            /// <summary>
+            /// Add new Expression
+            /// </summary>
+            /// <param name="author">Author of Expression</param>
+            /// <param name="content">Content of Expression</param>
+            /// <param name="belongsTo">Conversation This Expression belongs to</param>
+            /// <param name="inReplyTo">The Expression being replied To</param>
+            /// <returns></returns>
+            public Expression Expression(Member author, string content, Conversation belongsTo, Expression inReplyTo = null)
+            {
+                return Expression(author, content, null, belongsTo, inReplyTo);
+            }
+
+            /// <summary>
+            /// Add new Expression
+            /// </summary>
+            /// <param name="author">Author of Expression</param>
+            /// <param name="content">Content of Expression</param>
+            /// <param name="attributes">Additional attributes that should be set for Expression</param>
+            /// <param name="belongsTo">Conversation This Expression belongs to</param>
+            /// <param name="inReplyTo">The Expression being replied To</param>
+            /// <returns></returns>
+            public Expression Expression(Member author, string content, IDictionary<string, object> attributes, Conversation belongsTo, Expression inReplyTo)
+            {
+                var expression = new Expression(instance)
+                {
+                    Author = author,
+                    AuthoredAt = DateTime.UtcNow,
+                    Content = content,
+                };
+
+                if (belongsTo != null) expression.BelongsTo = belongsTo;
+                if (inReplyTo != null) expression.InReplyTo = inReplyTo;
+
+                AddAttributes(expression, attributes);
+                expression.Save();
+                return expression;
             }
 
             /// <summary>
