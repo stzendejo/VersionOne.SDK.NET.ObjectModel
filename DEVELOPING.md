@@ -1,35 +1,4 @@
-# VersionOne SDK.NET ObjectModel Library
-The ObjectModel library provide a strongly-typed model on top of the VersionOne SDK.NET API Client library. This allows developers to easily and quickly develop VersionOne integrations and complementary applications/utilities using domain objects (Project, Story, Iteration, etc) instead of more abstract objects (Asset, Attribute). The ObjectModel is suitable for fine-grained access, such as creating new VersionOne assets.
-
-## How to get the library as a precompiled package
-
-_Do this if you only want to use the functionality, but are not interested in compiling from source or in contributing code to the project._
-
-Use the NuGet package manager from Visual Studio or nuget.exe. Search for `VersionOne.SDK.ObjectModel` to find the precompiled package. Packages installed via NuGet have been tested by VersionOne against the product release version specified in the description of the package. Learn more about NuGet here: http://docs.nuget.org/docs/start-here/overview
-
-## How to obtain the source code
-
-_You should obtain the source code if you:_
-
-1. Want to compile it yourself, perhaps to the better understand it or debug it.
-2. Would like to contribute code to the project to improve it.
-
-You can obtain it in two ways:
-
-### How to download the source code as a zip file from GitHub
-
-_Do this if you are not planning to contribute code back to the project._
-
-1. Navigate to https://github.com/versionone/VersionOne.SDK.NET.ObjectModel
-2. Click the ZIP button near the top. This downloads all the code as a single zip file.
-
-### How to clone the source code repository from GitHub
-
-_Do this if you want to contribute code to the project._
-
-1. Install _Git for Windows_ from http://msysgit.github.com/
-2. Run Git Bash from the start menu
-3. Type `git clone git@github.com:versionone/VersionOne.SDK.NET.ObjectModel.git`
+# Developers Guide to VersionOne SDK.NET ObjectModel Library
 
 ## How to build the library from source
 
