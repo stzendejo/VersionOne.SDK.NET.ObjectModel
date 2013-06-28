@@ -57,21 +57,6 @@ function parentwith() {  # used to find $WORKSPACE, below.
   echo "$DIR"
 }
 
-function update_nuget_deps() {
-  install_nuget_deps
-  NuGet.exe update $SOLUTION_FILE -Verbose -Source $NUGET_FETCH_URL
-}
-
-function install_nuget_deps() {
-  PKGSDIRW=`winpath "$WORKSPACE/packages"`
-  for D in $WORKSPACE/*; do
-    if [ -d $D ] && [ -f $D/packages.config ]; then
-      PKGSCONFIGW=`winpath "$D/packages.config"`
-      NuGet.exe install "$PKGSCONFIGW" -o "$PKGSDIRW" -Source "$NUGET_FETCH_URL"
-    fi
-  done
-}
-
 
 
 # ----- Default values --------------------------------------------------------
@@ -80,42 +65,6 @@ function install_nuget_deps() {
 
 if [ -z "$WORKSPACE" ]; then
   export WORKSPACE=`parentwith .git`;
-fi
-
-TOOLSDIRS=". $WORKSPACE/nuget_tools $WORKSPACE/GetBuildTools $WORKSPACE/v1_build_tools $WORKSPACE/../v1_build_tools"
-#TOOLSDIRS="."
-for D in $TOOLSDIRS; do
-  if [ -d "$D/bin" ]; then
-    export BUILDTOOLS_PATH="$D/bin"
-  fi
-done
-if [ ! $(which $BUILDTOOLS_PATH/NuGet.exe) ] && [ $(which $WORKSPACE/.nuget/NuGet.exe) ]; then
-  export BUILDTOOLS_PATH="$WORKSPACE/.nuget"
-fi
-echo "Using $BUILDTOOLS_PATH for NuGet"
-
-if [ -z "$DOTNET_PATH" ]; then
-  for D in `bashpath "$SYSTEMROOT\\Microsoft.NET\\Framework\\*"`; do
-    if [ -d $D ]; then
-      export DOTNET_PATH="$D"
-    fi
-  done
-fi
-echo "Using $DOTNET_PATH for .NET"
-
-export PATH="$PATH:$BUILDTOOLS_PATH:$DOTNET_PATH"
-
-if [ -z "$SIGNING_KEY_DIR" ]; then
-  export SIGNING_KEY_DIR=`pwd`;
-fi
-
-export SIGNING_KEY="$SIGNING_KEY_DIR/VersionOne.snk"
-
-if [ -f "$SIGNING_KEY" ]; then 
-  export SIGN_ASSEMBLY="true"
-else
-  export SIGN_ASSEMBLY="false"
-  echo "Please place VersionOne.snk in `pwd` or $SIGNING_KEY_DIR to enable signing.";
 fi
 
 if [ -z "$VERSION_NUMBER" ]; then
@@ -173,3 +122,5 @@ else
     //xml=$NUNIT_XML_OUTPUT \
     `winpath "$WORKSPACE/$TEST_DIR/bin/$Configuration/$TEST_DLL"`
 fi
+
+
