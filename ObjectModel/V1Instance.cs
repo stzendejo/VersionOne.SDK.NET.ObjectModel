@@ -69,6 +69,48 @@ namespace VersionOne.SDK.ObjectModel {
             apiClientInternals = new ApiClientInternals(applicationPath, username, password, integratedAuth, proxyProvider);
         }
 
+		/// <summary>
+		/// Initialize a V1Instance that uses OAuth2 to authenticate to the backend server.
+		/// </summary>
+		/// <param name="applicationPath"></param>
+		/// <param name="oauth2storage"></param>
+		public V1Instance(string applicationPath, OAuth2Client.IStorage oauth2storage)
+		{
+			if (!applicationPath.EndsWith("/"))
+			{
+				applicationPath += "/";
+			}
+
+			apiClientInternals = new ApiClientInternals(applicationPath, oauth2storage, null);
+			wrapperManager = new WrapperManager(this);
+		}
+
+
+
+		/// <summary>
+		/// Initialize a V1Instance that uses OAuth2 to authenticate to the backend server and communicates via a proxy
+		/// </summary>
+		/// <param name="applicationPath"></param>
+		/// <param name="oauth2storage"></param>
+		/// <param name="proxySettings"></param>
+		public V1Instance(string applicationPath, OAuth2Client.IStorage oauth2storage, ProxySettings proxySettings)
+		{
+			if (!applicationPath.EndsWith("/"))
+			{
+				applicationPath += "/";
+			}
+			ProxyProvider proxyProvider = null;
+			if (proxySettings != null)
+			{
+				proxyProvider = new ProxyProvider(proxySettings.Path, proxySettings.Username, proxySettings.Password, proxySettings.Domain);
+			}
+
+
+			apiClientInternals = new ApiClientInternals(applicationPath, oauth2storage, proxyProvider);
+			wrapperManager = new WrapperManager(this);
+		}
+
+
         /// <summary>
         /// Validate the application path, username, and password used to construct this instance
         /// </summary>
