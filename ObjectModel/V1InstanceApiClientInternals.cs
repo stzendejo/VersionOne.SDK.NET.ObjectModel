@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using OAuth2Client;
 using VersionOne.SDK.APIClient;
 
 namespace VersionOne.SDK.ObjectModel
@@ -13,7 +14,8 @@ namespace VersionOne.SDK.ObjectModel
         public class ApiClientInternals
         {
             private readonly string _applicationPath;
-            private readonly string _username;
+			private readonly IStorage _oauthStorage;
+			private readonly string _username;
             private readonly string _password;
             private readonly bool _integratedAuth;
 
@@ -28,6 +30,15 @@ namespace VersionOne.SDK.ObjectModel
 
                 this.proxyProvider = proxyProvider;
             }
+			internal ApiClientInternals(string applicationPath, IStorage oauthStorage, ProxyProvider proxyProvider)
+			{
+				_applicationPath = applicationPath;
+				_oauthStorage = oauthStorage;
+				_username = null;
+				_password = null;
+				_integratedAuth = false;
+				this.proxyProvider = proxyProvider;
+			}
 
             internal string ApplicationPath { get { return _applicationPath; } }
 
@@ -169,6 +180,11 @@ namespace VersionOne.SDK.ObjectModel
             {
                 return new V1APIConnector(url, username, password, integratedAuth, proxyProvider);
             }
+
+			private IAPIConnector CreateConnector(string url, IStorage storage)
+			{
+				return new V1OAuth2APIConnector(url, storage, proxyProvider);
+			}
 
             private class DelegatorDictionary : IDictionary<string, string>
             {
