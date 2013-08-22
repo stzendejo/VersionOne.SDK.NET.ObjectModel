@@ -170,20 +170,56 @@ namespace VersionOne.SDK.ObjectModel
                 }
             }
 
+			/// <summary>
+			/// Assembly name for user-agent setting
+			/// </summary>
+			public static System.Reflection.AssemblyName MyAssemblyName =
+				System.Reflection.Assembly.GetAssembly(typeof(ApiClientInternals)).GetName();
+
+			private string _callerUserAgent = "";
+
+			/// <summary>
+			/// Set the user agent that will be reported to the VersionOne Server.
+			/// 
+			/// Place some text that describes your client application here.  Perhaps:
+			///   System.Reflection.Assembly.GetAssembly(typeof(YourClass)).GetName().FullName
+			/// 
+			/// </summary>
+			/// <param name="agent"></param>
+			public void SetUserAgent(string agent)
+			{
+				_callerUserAgent = agent;
+			}
+
+
+			private string MyUserAgent
+			{
+				get
+				{
+					return String.Format("{0}/{1} ({2}) {3}", MyAssemblyName.Name, MyAssemblyName.Version, MyAssemblyName.FullName, _callerUserAgent);
+				}
+			}
+
             private V1APIConnector CreateConnector(string url) 
             {
                 // TODO check integratedAuth here
-                return new V1APIConnector(url, null, null, true, proxyProvider);
+                var c =  new V1APIConnector(url, null, null, true, proxyProvider);
+				c.SetCallerUserAgent(MyUserAgent);
+	            return c;
             }
 
             private V1APIConnector CreateConnector(string url, string username, string password, bool integratedAuth) 
             {
-                return new V1APIConnector(url, username, password, integratedAuth, proxyProvider);
+                var c = new V1APIConnector(url, username, password, integratedAuth, proxyProvider);
+				c.SetCallerUserAgent(MyUserAgent);
+	            return c;
             }
 
 			private IAPIConnector CreateConnector(string url, IStorage storage)
 			{
-				return new V1OAuth2APIConnector(url, storage, proxyProvider);
+				var c = new V1OAuth2APIConnector(url, storage, proxyProvider);
+				c.SetCallerUserAgent(MyUserAgent);
+				return c;
 			}
 
             private class DelegatorDictionary : IDictionary<string, string>
