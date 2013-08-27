@@ -1,4 +1,6 @@
 #!/bin/bash -xe
+set -x
+set -e
 
 # ----- Variables -------------------------------------------------------------
 # Variables in the build.properties file will be available to Jenkins
