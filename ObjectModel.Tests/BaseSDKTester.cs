@@ -53,8 +53,19 @@ namespace VersionOne.SDK.ObjectModel.Tests {
 
         protected V1Instance Instance {
             get {
-                if (instance == null) {
-                    instance = new V1Instance(ApplicationPath, Username, Password);
+                if (instance == null)
+                {
+	                var oauth2dir = System.Environment.GetEnvironmentVariable("OAUTH2_DIR");
+					if (oauth2dir != null)
+					{
+						instance = new V1Instance(ApplicationPath,
+												  new OAuth2Client.Storage.JsonFileStorage(oauth2dir + @"\client_secrets.json",
+																						   oauth2dir + @"\stored_creds.json"));
+					}
+					else
+					{
+						instance = new V1Instance(ApplicationPath, Username, Password);						
+					}
                     instance.Validate();
 	            }
 
