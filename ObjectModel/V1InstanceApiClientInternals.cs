@@ -145,30 +145,30 @@ namespace VersionOne.SDK.ObjectModel
 
             internal void Validate()
             {
-                V1ConnectionValidator validator = new V1ConnectionValidator(_applicationPath, _username, _password, _integratedAuth, proxyProvider);
-
-                foreach (KeyValuePair<string, string> pair in _customHttpHeaders)
-                {
-                    validator.CustomHttpHeaders.Add(pair);
-                }
-                
-                try
-                {
-                    validator.CheckConnection();
-                }
-                catch (ConnectionException)
-                {
-                    throw new ApplicationUnavailableException("Unable to connect to VersionOne.");
-                }
-
-                try
-                {
-                    validator.CheckAuthentication();
-                }
-                catch (ConnectionException)
-                {
-                    throw new AuthenticationException("Invalid username or password.");
-                }
+//                V1ConnectionValidator validator = new V1ConnectionValidator(_applicationPath, _username, _password, _integratedAuth, proxyProvider);
+//
+//                foreach (KeyValuePair<string, string> pair in _customHttpHeaders)
+//                {
+//                    validator.CustomHttpHeaders.Add(pair);
+//                }
+//                
+//                try
+//                {
+//                    validator.CheckConnection();
+//                }
+//                catch (ConnectionException)
+//                {
+//                    throw new ApplicationUnavailableException("Unable to connect to VersionOne.");
+//                }
+//
+//                try
+//                {
+//                    validator.CheckAuthentication();
+//                }
+//                catch (ConnectionException)
+//                {
+//                    throw new AuthenticationException("Invalid username or password.");
+//                }
             }
 
 			
