@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using OAuth2Client;
 using VersionOne.SDK.APIClient;
 
@@ -51,7 +52,7 @@ namespace VersionOne.SDK.ObjectModel
                 {
                     if (_metaModel == null)
                     {
-                        V1APIConnector connector = CreateConnector(_applicationPath + "meta.v1/");
+                        var connector = CreateConnector(_applicationPath + "meta.v1/");
                         _customHttpHeaders.AddDelegate(connector.CustomHttpHeaders);
                         _metaModel = new MetaModel(connector);
                     }
@@ -69,7 +70,7 @@ namespace VersionOne.SDK.ObjectModel
                 {
                     if (_loc == null)
                     {
-                        V1APIConnector connector = CreateConnector(_applicationPath + "loc.v1/");
+                        var connector = CreateConnector(_applicationPath + "loc.v1/");
                         _customHttpHeaders.AddDelegate(connector.CustomHttpHeaders);
                         _loc = new Localizer(connector);
                     }
@@ -87,7 +88,7 @@ namespace VersionOne.SDK.ObjectModel
                 {
                     if (_services == null)
                     {
-                        V1APIConnector connector = CreateConnector(_applicationPath + "rest-1.v1/", _username, _password, _integratedAuth);
+                        var connector = CreateConnector(_applicationPath + "rest-1.v1/");
                         _customHttpHeaders.AddDelegate(connector.CustomHttpHeaders);
                         _services = new Services(MetaModel, connector);
                     }
@@ -105,7 +106,7 @@ namespace VersionOne.SDK.ObjectModel
                 {
                     if (_attachments == null)
                     {
-                        V1APIConnector connector = CreateConnector(_applicationPath + "attachment.img/", _username, _password, _integratedAuth);
+                        var connector = CreateConnector(_applicationPath + "attachment.img/");
                         _customHttpHeaders.AddDelegate(connector.CustomHttpHeaders);
                         _attachments = new Attachments(connector);
                     }
@@ -123,7 +124,7 @@ namespace VersionOne.SDK.ObjectModel
                 {
                     if (_v1Config == null)
                     {
-                        V1APIConnector connector = CreateConnector(_applicationPath + "config.v1/");
+                        var connector = CreateConnector(_applicationPath + "config.v1/");
                         _customHttpHeaders.AddDelegate(connector.CustomHttpHeaders);
                         _v1Config = new V1Configuration(connector);
                     }
@@ -170,14 +171,8 @@ namespace VersionOne.SDK.ObjectModel
                 }
             }
 
-			/// <summary>
-			/// Assembly name for user-agent setting
-			/// </summary>
-			public static System.Reflection.AssemblyName MyAssemblyName =
-				System.Reflection.Assembly.GetAssembly(typeof(ApiClientInternals)).GetName();
-
-			private string _callerUserAgent = "";
-
+			
+			private string _callerUserAgent = MakeUserAgent(RunningAssemblyName);
 			/// <summary>
 			/// Set the user agent that will be reported to the VersionOne Server.
 			/// 
@@ -185,42 +180,49 @@ namespace VersionOne.SDK.ObjectModel
 			///   System.Reflection.Assembly.GetAssembly(typeof(YourClass)).GetName().FullName
 			/// 
 			/// </summary>
-			/// <param name="agent"></param>
-			public void SetUserAgent(string agent)
+			/// <param name="userAgent"></param>
+			public void SetCallerUserAgent(string userAgent)
 			{
-				_callerUserAgent = agent;
+				_callerUserAgent = userAgent;
 			}
-
-
+			/// <summary>
+			/// 
+			/// </summary>
+			public static AssemblyName MyAssemblyName = Assembly.GetAssembly(typeof(V1APIConnector)).GetName();
+			/// <summary>
+			/// 
+			/// </summary>
+			public static AssemblyName RunningAssemblyName = Assembly.GetExecutingAssembly().GetName();
+			private static string MakeUserAgent(AssemblyName n, string upstream = "")
+			{
+				return String.Format("{0}/{1} ({2}) {3}", n.Name, n.Version, n.FullName, upstream);
+			}
 			private string MyUserAgent
 			{
 				get
 				{
-					return String.Format("{0}/{1} ({2}) {3}", MyAssemblyName.Name, MyAssemblyName.Version, MyAssemblyName.FullName, _callerUserAgent);
+					return MakeUserAgent(MyAssemblyName, _callerUserAgent);
 				}
 			}
 
-            private V1APIConnector CreateConnector(string url) 
+
+            private IAPIConnector CreateConnector(string url) 
             {
                 // TODO check integratedAuth here
-                var c =  new V1APIConnector(url, null, null, true, proxyProvider);
-				c.SetCallerUserAgent(MyUserAgent);
-	            return c;
+	            if (_oauthStorage == null)
+	            {
+		            var cc = new V1APIConnector(url, _username, _password, _integratedAuth, proxyProvider);
+		            cc.SetCallerUserAgent(MyUserAgent);
+		            return cc;
+	            }
+	            else
+	            {
+		            var cc = new V1OAuth2APIConnector(url, _oauthStorage, proxyProvider);
+		            cc.SetCallerUserAgent(MyUserAgent);
+		            return cc;
+	            }
             }
 
-            private V1APIConnector CreateConnector(string url, string username, string password, bool integratedAuth) 
-            {
-                var c = new V1APIConnector(url, username, password, integratedAuth, proxyProvider);
-				c.SetCallerUserAgent(MyUserAgent);
-	            return c;
-            }
-
-			private IAPIConnector CreateConnector(string url, IStorage storage)
-			{
-				var c = new V1OAuth2APIConnector(url, storage, proxyProvider);
-				c.SetCallerUserAgent(MyUserAgent);
-				return c;
-			}
 
             private class DelegatorDictionary : IDictionary<string, string>
             {
