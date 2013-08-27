@@ -78,17 +78,18 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="OAuth2Client">
-      <HintPath>..\packages\OAuth2Client.1.3.13233.2507\lib\net45\OAuth2Client.dll</HintPath>
+    <Reference Include="OAuth2Client, Version=1.4.13239.2512, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\OAuth2Client.1.4.13239.2512\lib\net45\OAuth2Client.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml" />
-    <Reference Include="VersionOne.SDK.APIClient, Version=14.0.1.199, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="VersionOne.SDK.APIClient, Version=14.0.1.202, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\VersionOne.SDK.APIClient.14.0.1.199\lib\net45\VersionOne.SDK.APIClient.dll</HintPath>
+      <HintPath>..\packages\VersionOne.SDK.APIClient.14.0.1.202\lib\net45\VersionOne.SDK.APIClient.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
