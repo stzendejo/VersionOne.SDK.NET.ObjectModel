@@ -28,16 +28,16 @@ namespace VersionOne.SDK.ObjectModel
 			Type targetType = typeof(T) == typeof(CustomListValue) || (validate == false && !typeof(T).IsAbstract) ? typeof(T) : FindType(id, validate);
 			if (targetType == null)
 			{
-				throw new ArgumentException("Couldnt find type to instantiate");
-				//return null;
+				//throw new ArgumentException("Couldnt find type to instantiate");
+				return null;
 			}
 
 			// This assumes that every entity will have a constructor that takes an AssetID and a V1Instance
 			var obj = (T)Activator.CreateInstance(targetType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { id, _instance }, null);
-			if (obj == null)
-			{
-				throw new Exception("Couldn't instantiate instance");
-			}
+//			if (obj == null)
+//			{
+//				throw new Exception("Couldn't instantiate instance");
+//			}
 			return obj;
 		}
 
