@@ -27,10 +27,18 @@ namespace VersionOne.SDK.ObjectModel
 		{
 			Type targetType = typeof(T) == typeof(CustomListValue) || (validate == false && !typeof(T).IsAbstract) ? typeof(T) : FindType(id, validate);
 			if (targetType == null)
-				return null;
+			{
+				throw new ArgumentException("Couldnt find type to instantiate");
+				//return null;
+			}
 
 			// This assumes that every entity will have a constructor that takes an AssetID and a V1Instance
-			return (T)Activator.CreateInstance(targetType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { id, _instance }, null);			
+			var obj = (T)Activator.CreateInstance(targetType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { id, _instance }, null);
+			if (obj == null)
+			{
+				throw new Exception("Couldn't instantiate instance");
+			}
+			return obj;
 		}
 
 		private readonly object _typeMapLock = new object();
