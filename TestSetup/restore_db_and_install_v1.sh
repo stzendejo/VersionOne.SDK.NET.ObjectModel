@@ -23,8 +23,8 @@ if [ $RESTORE_DB == "true" ]
 then
     echo "Unpacking database backup from self-extracting archive"
     ./$COMPRESSED_BACKUP_EXE -y
+    echo "DB file md5:" `md5sum $BACKUP_FILE`
     echo "Restoring database..."
-
     $SQLCMD -S $DB_SERVER -E -Q "IF  EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'$DB_NAME') DROP DATABASE [$DB_NAME]" >restore_db_and_install_v1.log
     $SQLCMD -S $DB_SERVER -E -Q "CREATE DATABASE [$DB_NAME]" >>restore_db_and_install_v1.log
     $SQLCMD -S $DB_SERVER -d $DB_NAME -E -i $BACKUP_FILE >>restore_db_and_install_v1.log
