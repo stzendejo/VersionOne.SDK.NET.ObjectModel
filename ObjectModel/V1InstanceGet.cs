@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using VersionOne.SDK.APIClient;
 using VersionOne.SDK.ObjectModel.Filters;
 using VersionOne.SDK.ObjectModel.List;
@@ -49,6 +50,7 @@ namespace VersionOne.SDK.ObjectModel {
                     query.Filter = filter.BuildFilter(type, instance);
                     query.Find = filter.BuildFind(type);
                     query.OrderBy = filter.BuildOrderBy(type, defaultOrderBy);
+                    query.Selection = filter.BuildSelection(type);
                 }
 
                 return instance.QueryToEntityEnum<T>(query);

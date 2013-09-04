@@ -40,6 +40,11 @@ namespace VersionOne.SDK.ObjectModel.Filters {
         public readonly StringSearcher Find = new StringSearcher();
 
         /// <summary>
+        /// Add the names of the properties you wish to eager load.
+        /// </summary>
+        public readonly ICollection<string> Selectors = new List<string>();
+
+        /// <summary>
         /// Filtering conditions that restrict creation date of Entity.
         /// </summary>
         public readonly DateSearcher CreateDateUtc = new DateSearcher();
@@ -117,6 +122,12 @@ namespace VersionOne.SDK.ObjectModel.Filters {
             }
 
             return null;
+        }
+
+        internal AttributeSelection BuildSelection(IAssetType assetType) {
+            var attributes = new AttributeSelection();
+            attributes.AddRange(Selectors.Select(property => assetType.GetAttributeDefinition(ResolvePropertyName(property))));
+            return attributes;
         }
     }
 }
