@@ -107,6 +107,9 @@ fi
 $WORKSPACE/TestSetup/copy_latest_setup_to_standard_name.sh
 $WORKSPACE/TestSetup/restore_db_and_install_v1.sh
 
+curl --user admin:admin -o $WORKSPACE/TestSetup/client_secrets.json ${TEST_URL}ClientRegistration.mvc/GetClientJson?client_id=client_97887v3p
+
+
 if [ -e /etc/bash.bashrc ] ; then
   # Cygwin specific settings
   $NUNIT_CONSOLE_RUNNER \
