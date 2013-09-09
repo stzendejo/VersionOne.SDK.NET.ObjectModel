@@ -93,33 +93,11 @@ fi
 
 
 
-# ---- Run Tests --------------------------------------------------------------------------
-
-# Make sure the nunit-console is available first...
-NUNIT_CONSOLE_RUNNER=`/usr/bin/find packages | grep "${NUNIT_RUNNER_NAME}\$"`
-if [ -z "$NUNIT_CONSOLE_RUNNER" ]
-then
-  echo "Could not find $NUNIT_RUNNER_NAME in the $WORKSPACE/packages folder."
-  exit -1
-fi
+# ---- Prepare Tests --------------------------------------------------------------------------
 
 
-if [ -e /etc/bash.bashrc ] ; then
-  # Cygwin specific settings
-  $NUNIT_CONSOLE_RUNNER \
-    -framework:net-4.0 \
-    -labels \
-    -stoponerror \
-    -xml=$NUNIT_XML_OUTPUT \
-    `winpath "$WORKSPACE/$TEST_DIR/bin/$Configuration/$TEST_DLL"`
-else
-  # Msysgit specific settings
-  $NUNIT_CONSOLE_RUNNER \
-    //framework:net-4.0 \
-    //labels \
-    //stoponerror \
-    //xml=$NUNIT_XML_OUTPUT \
-    `winpath "$WORKSPACE/$TEST_DIR/bin/$Configuration/$TEST_DLL"`
-fi
+# Prepare setup, restore test data, and install application.
+$WORKSPACE/TestSetup/copy_latest_setup_to_standard_name.sh
+$WORKSPACE/TestSetup/restore_db_and_install_v1.sh
 
-
+curl --user admin:admin -o $WORKSPACE/TestSetup/client_secrets.json ${TEST_URL}ClientRegistration.mvc/GetClientJson?client_id=client_97887v3p
