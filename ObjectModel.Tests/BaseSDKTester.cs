@@ -60,7 +60,7 @@ namespace VersionOne.SDK.ObjectModel.Tests {
 					{
 						instance = new V1Instance(ApplicationPath,
 												  new OAuth2Client.Storage.JsonFileStorage(oauth2dir + @"\client_secrets.json",
-																						   oauth2dir + @"\stored_creds.json"));
+																						   oauth2dir + @"\stored_credentials.json"));
 					}
 					else
 					{
