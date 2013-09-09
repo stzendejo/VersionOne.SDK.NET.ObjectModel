@@ -33,7 +33,7 @@ fi
 
 echo "Installing VersionOne at http://localhost/${INSTANCE_NAME} associated with DB Server: ${DB_SERVER} and DB Name: ${DB_NAME}..."
 
-./$V1_SETUP -Quiet:2 -SigningKey: -DbServer:$DB_SERVER -LogFile:$WORKSPACE\\TestSetup\\setup.log -DBName:$DB_NAME $INSTANCE_NAME
+./$V1_SETUP -Quiet:2 -SigningKey:762C434A50EBCEE7A8FE18DF62FC41C0D49F5A5ED069A91DC3693E3ECC099185 -DbServer:$DB_SERVER -LogFile:$WORKSPACE\\TestSetup\\setup.log -DBName:$DB_NAME $INSTANCE_NAME
 echo V1 setup exits with code $?
 
 if [ $? -gt 0 ]
