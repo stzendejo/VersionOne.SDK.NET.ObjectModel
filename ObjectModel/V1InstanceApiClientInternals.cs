@@ -218,9 +218,9 @@ namespace VersionOne.SDK.ObjectModel
 	            }
 	            else
 	            {
-					if (url == "rest-1.v1/")
+					if (url.EndsWith("rest-1.v1/"))
 					{
-						url = "rest-1.oauth.v1/";
+						url = url.Replace("/rest-1.v1/", "/rest-1.oauth.v1/");
 					}
 		            var cc = new V1OAuth2APIConnector(url, _oauthStorage, proxyProvider);
 		            cc.SetCallerUserAgent(MyUserAgent);
