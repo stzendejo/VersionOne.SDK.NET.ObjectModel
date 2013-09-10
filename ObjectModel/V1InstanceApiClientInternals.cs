@@ -89,7 +89,7 @@ namespace VersionOne.SDK.ObjectModel
                     if (_services == null)
                     {
 	                    var connector =
-		                    CreateConnector(_applicationPath + V1ConfigurationManager.GetValue("DataUrl", "rest-1.v1/"));
+		                    CreateConnector(_applicationPath + "rest-1.v1/");
                         _customHttpHeaders.AddDelegate(connector.CustomHttpHeaders);
                         _services = new Services(MetaModel, connector);
                     }
