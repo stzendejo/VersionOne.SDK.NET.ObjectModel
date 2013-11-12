@@ -159,7 +159,7 @@ MSBuild.exe $SOLUTION_FILE \
 # ---- Produce NuGet .nupkg file ----------------------------------------------------------
 
 cd $WORKSPACE/$MAIN_DIR
-$WORKSPACES/.nuget/NuGet.exe pack $MAIN_CSPROJ -Symbols -prop Configuration=$Configuration
+$WORKSPACE/.nuget/NuGet.exe pack $MAIN_CSPROJ -Symbols -prop Configuration=$Configuration
 cd $WORKSPACE
 
 
