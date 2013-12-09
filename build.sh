@@ -4,7 +4,13 @@
 # Variables in the build.properties file will be available to Jenkins
 # build steps. Variables local to this script can be defined below.
 . ./build.properties
-if [ -d build-tools ]; then cd build-tools && git fetch && git stash && git pull && cd ..; else git clone https://github.com/versionone/openAgile-build-tools.git build-tools; fi
+rm -rf build-tools
+#if [ -d build-tools ] then
+#	cd build-tools && git fetch && git stash && git pull && cd ..
+#else
+	git clone https://github.com/versionone/openAgile-build-tools.git build-tools
+#fi
+
 source ./build-tools/common.sh
 
 # ---- Produce .NET Metadata --------------------------------------------------
