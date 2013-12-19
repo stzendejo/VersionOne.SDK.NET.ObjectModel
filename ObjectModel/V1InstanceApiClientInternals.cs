@@ -173,38 +173,40 @@ namespace VersionOne.SDK.ObjectModel
             }
 
 			
-			private string _callerUserAgent = MakeUserAgent(RunningAssemblyName);
-			/// <summary>
-			/// Set the user agent that will be reported to the VersionOne Server.
-			/// 
-			/// Place some text that describes your client application here.  Perhaps:
-			///   System.Reflection.Assembly.GetAssembly(typeof(YourClass)).GetName().FullName
-			/// 
-			/// </summary>
-			/// <param name="userAgent"></param>
-			public void SetCallerUserAgent(string userAgent)
-			{
-				_callerUserAgent = userAgent;
-			}
-			/// <summary>
-			/// 
-			/// </summary>
-			public static AssemblyName MyAssemblyName = Assembly.GetAssembly(typeof(V1APIConnector)).GetName();
-			/// <summary>
-			/// 
-			/// </summary>
-			public static AssemblyName RunningAssemblyName = Assembly.GetExecutingAssembly().GetName();
-			private static string MakeUserAgent(AssemblyName n, string upstream = "")
-			{
-				return String.Format("{0}/{1} ({2}) {3}", n.Name, n.Version, n.FullName, upstream);
-			}
-			private string MyUserAgent
-			{
-				get
-				{
-					return MakeUserAgent(MyAssemblyName, _callerUserAgent);
-				}
-			}
+
+
+            private static string FormatAssemblyUserAgent(Assembly a, string upstream = null)
+            {
+                if (a == null) return null;
+                var n = a.GetName();
+                var s = String.Format("{0}/{1} ({2})", n.Name, n.Version, n.FullName);
+                if (!String.IsNullOrEmpty(upstream))
+                    s = s + " " + upstream;
+                return s;
+            }
+
+            private string _upstreamUserAgent = FormatAssemblyUserAgent(Assembly.GetEntryAssembly());
+
+            /// <summary>
+            /// Set the user agent string for the calling or instantiating library or app.
+            /// This will be reported with the ObjectModel library version.
+            /// </summary>
+            /// <param name="userAgent"></param>
+            public void SetUpstreamUserAgent(string userAgent)
+            {
+                _upstreamUserAgent = userAgent;
+            }
+
+            private string MyUserAgent
+            {
+                get
+                {
+                    var myAssembly = Assembly.GetAssembly(typeof(ApiClientInternals));
+                    return FormatAssemblyUserAgent(myAssembly, _upstreamUserAgent);
+                }
+            }
+
+
 
 
             private IAPIConnector CreateConnector(string url) 
@@ -213,7 +215,7 @@ namespace VersionOne.SDK.ObjectModel
 	            if (_oauthStorage == null)
 	            {
 		            var cc = new V1APIConnector(url, _username, _password, _integratedAuth, proxyProvider);
-		            cc.SetCallerUserAgent(MyUserAgent);
+		            cc.SetUpstreamUserAgent(MyUserAgent);
 		            return cc;
 	            }
 	            else
@@ -223,7 +225,7 @@ namespace VersionOne.SDK.ObjectModel
 						url = url.Replace("/rest-1.v1/", "/rest-1.oauth.v1/");
 					}
 		            var cc = new V1OAuth2APIConnector(url, _oauthStorage, proxyProvider);
-		            cc.SetCallerUserAgent(MyUserAgent);
+                    cc.SetUpstreamUserAgent(MyUserAgent);
 		            return cc;
 	            }
             }
