@@ -255,9 +255,9 @@
     <None Include="VersionOne.SDK.ObjectModel.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Condition="Exists('$(V1BuildToolsPath)\NuGet.targets')" Project="$(V1BuildToolsPath)\NuGet.targets" />
+
   <Import Project="$(V1BuildToolsPath)\MSBuild\VersionOne\Versioning.targets" Condition="Exists('$(V1BuildToolsPath)\MSBuild\VersionOne\Versioning.targets')" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
