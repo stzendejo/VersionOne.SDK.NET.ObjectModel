@@ -212,7 +212,8 @@ namespace VersionOne.SDK.ObjectModel
             private IAPIConnector CreateConnector(string url) 
             {
                 // TODO check integratedAuth here
-	            if (_oauthStorage == null)
+	            /*
+                if (_oauthStorage == null)
 	            {
 		            var cc = new V1APIConnector(url, _username, _password, _integratedAuth, proxyProvider);
 		            cc.SetUpstreamUserAgent(MyUserAgent);
@@ -228,6 +229,26 @@ namespace VersionOne.SDK.ObjectModel
                     cc.SetUpstreamUserAgent(MyUserAgent);
 		            return cc;
 	            }
+                */
+                var cc = new VersionOneAPIConnector(url, null, proxyProvider);
+                if (_oauthStorage == null)
+                {
+                    if (!_integratedAuth)
+                    {
+                        cc.WithVersionOneUsernameAndPassword(_username, _password);
+                    }
+                    else
+                    {
+                        cc.WithWindowsIntegratedAuthentication();
+                    }
+                }
+                else
+                {
+                    cc.WithOAuth2(_oauthStorage);
+                }
+
+                cc.SetUpstreamUserAgent(MyUserAgent);
+                return cc;
             }
 
 
