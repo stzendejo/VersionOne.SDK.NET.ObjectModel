@@ -211,25 +211,7 @@ namespace VersionOne.SDK.ObjectModel
 
             private IAPIConnector CreateConnector(string url) 
             {
-                // TODO check integratedAuth here
-	            /*
-                if (_oauthStorage == null)
-	            {
-		            var cc = new V1APIConnector(url, _username, _password, _integratedAuth, proxyProvider);
-		            cc.SetUpstreamUserAgent(MyUserAgent);
-		            return cc;
-	            }
-	            else
-	            {
-					if (url.EndsWith("rest-1.v1/"))
-					{
-						url = url.Replace("/rest-1.v1/", "/rest-1.oauth.v1/");
-					}
-		            var cc = new V1OAuth2APIConnector(url, _oauthStorage, proxyProvider);
-                    cc.SetUpstreamUserAgent(MyUserAgent);
-		            return cc;
-	            }
-                */
+                // TODO check integratedAuth here	          
                 var cc = new VersionOneAPIConnector(url, null, proxyProvider);
                 if (_oauthStorage == null)
                 {

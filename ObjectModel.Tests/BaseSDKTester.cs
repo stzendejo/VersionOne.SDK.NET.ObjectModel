@@ -25,7 +25,7 @@ namespace VersionOne.SDK.ObjectModel.Tests {
 					url = System.Configuration.ConfigurationManager.AppSettings[settingName];
 					if (string.IsNullOrWhiteSpace(url))
 					{
-						url = "http://localhost/V1SDKTests/";
+                        url = "http://localhost/V1SDKTests/";
 					}
 				}
 
@@ -55,7 +55,8 @@ namespace VersionOne.SDK.ObjectModel.Tests {
             get {
                 if (instance == null)
                 {
-	                var oauth2dir = System.Environment.GetEnvironmentVariable("OAUTH2_DIR");
+	                //var oauth2dir = System.Environment.GetEnvironmentVariable("OAUTH2_DIR");
+                    string oauth2dir = null;
 					if (oauth2dir != null)
 					{
 						instance = new V1Instance(ApplicationPath,
