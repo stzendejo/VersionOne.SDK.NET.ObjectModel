@@ -15,9 +15,9 @@
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
     -->
     <dependencies>
-       	<dependency id="VersionOne.SDK.APIClient" version="[14.0,15)" />
+       	<dependency id="VersionOne.SDK.APIClient" version="[14.1,15)" />
     </dependencies>
-    <copyright>Copyright 2012</copyright>
+    <copyright>Copyright 2012-2014</copyright>
     <tags>V1 VersionOne API ObjectModel agile</tags>
   </metadata>
 </package>
