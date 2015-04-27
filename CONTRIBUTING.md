@@ -1,4 +1,4 @@
-# Contributing to VersionOne SDK.NET ObjectModel Library
+# Contributing to VersionOne .NET Object Model
 
  1. [Getting Involved](#getting-involved)
  2. [Reporting Bugs](#reporting-bugs)

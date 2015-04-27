@@ -1,4 +1,4 @@
-# Developers Guide to VersionOne SDK.NET ObjectModel Library
+# Developers Guide to VersionOne .NET Object Model
 
 ## How to build the library from source
 
